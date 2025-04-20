@@ -1,16 +1,20 @@
-//height of a tree
-//Count Node
-//Sum of all Node
-//Diameter
-//Subtree of another tree
-//Top view of a tree
-//Kth Level of a tree
-//Lowest Common Ancestor; 
+// -------------------- Binary Tree Operations --------------------
+// Operations implemented in this file:
+// 1. Height of a Tree
+// 2. Count of Nodes
+// 3. Sum of all Nodes
+// 4. Diameter of a Tree (O(N^2) and O(N))
+// 5. Check if one Tree is a Subtree of another
+// 6. Top View of a Binary Tree
+// 7. Print Kth Level of Tree
+// 8. Lowest Common Ancestor (Path-based and Optimized)
 package BinaryTree;
 
+import java.nio.file.Path;
 import java.util.*;
 
 public class BT2 {
+  // Binary Tree Node definition
   static class Node{
     int data;
     Node left;
@@ -21,7 +25,7 @@ public class BT2 {
       this.right=null;
     }
   }
-  
+    // 1. Height of the Tree
   public static int height(Node root){
     if(root==null){
       return 0;
@@ -31,6 +35,7 @@ public class BT2 {
     int height = Math.max(leftHeight, rightHeight)+1;
     return height;
   }
+    // 2. Count of Nodes in the Tre
   public static int countNode(Node root){
     if(root==null){
       return 0;
@@ -40,6 +45,7 @@ public class BT2 {
     int totalCountNode =leftCount + rightCount +1;
     return totalCountNode;
   }
+    // 3. Sum of all Nodes in the Tre
   public static int sum(Node root){
     if(root==null){
       return 0;
@@ -49,6 +55,7 @@ public class BT2 {
      int sum = (leftsum + rightsum +root.data);
     return sum;
   }
+   // 4. Diameter of Tree - Naive O(N^2) approach
   public static int diameter(Node root){ //O(N^2)
     if(root==null){
       return 0;
@@ -60,14 +67,16 @@ public class BT2 {
      int selfDiam =leftHeight +rightHeight +1;
     return Math.max(Math.max(leftdiam,rightdiam), selfDiam);
   }
+    // Helper class for optimized diameter
   static class Info{
-    int d ;
-    int h;
+    int d; // diameter
+    int h; // height
      Info(int d,int h){
       this.d=d;
       this.h=h;
      }
   }
+  // 4. Diameter of Tree - Optimized O(N) approach
   public static Info diameter2(Node root){ //O(N)
     if(root==null){
       return new Info(0,0);
@@ -81,6 +90,7 @@ public class BT2 {
     return newInfo;
   }
   //---------------------Subtree of another tree------------------
+    // Helper class to Check if two trees are identical
   public static boolean isIdentical(Node node, Node subRoot){
     if(node == null && subRoot==null) {
       return true;
@@ -96,6 +106,7 @@ public class BT2 {
     }
   return true;
   }
+  // 5. Check if one Tree is a Subtree of another
   public static boolean isSubtree(Node root, Node subRoot){
     //base case
     if(root==null){
@@ -107,11 +118,11 @@ public class BT2 {
         return true;
       }
     }
-    return isSubtree(root.left,subRoot) || isSubtree(root.left,subRoot);
+    return isSubtree(root.left,subRoot) || isSubtree(root.right,subRoot);
   }
    //---------------------Subtree of another tree------------------
    //---------------------Top view of a tree-----------------------
-   public static class Info2{
+   public static class Info2{ // Helper class to store node and its horizontal distance for top view
     Node node;
     int hd;
     Info2(Node node,int hd){
@@ -119,6 +130,7 @@ public class BT2 {
       this.hd=hd;
     }
    }
+    // 6. Print the top view of the tree
    public static void topView(Node root){
     int min=0,max=0;
     Queue<Info2> q = new LinkedList<>();
@@ -169,6 +181,7 @@ public class BT2 {
 
    }
    //------------------------Lowest Common Ancestor-----------------------
+     // 8. Get path from root to a given node (used for LCA)
    public static boolean getPath(Node root, int node,ArrayList<Node> path){ 
     //base case
     if(root==null){
@@ -186,6 +199,7 @@ public class BT2 {
     path.remove(path.size()-1); // node is not a part of path
     return false;
    }
+   //Lowest Common Ancestor - Path Based
    public static int lca(Node root,int a, int b){//TC:-O(N) & SC:-O(N)
           ArrayList<Node> pathA = new ArrayList<>();
           ArrayList<Node> pathB = new ArrayList<>();
@@ -199,6 +213,7 @@ public class BT2 {
           }
           return pathA.get(i-1).data;
    }
+   // Lowest Common Ancestor - Optimized Approach
    public static Node lca2(Node root,int a, int b){//TC:-O(N) & SC:-O(1)
     //base case
     if(root==null || root.data==a || root.data==b){
