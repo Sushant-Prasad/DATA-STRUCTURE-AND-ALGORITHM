@@ -10,7 +10,7 @@
 // 8. Lowest Common Ancestor (Path-based and Optimized)
 package BinaryTree;
 
-import java.nio.file.Path;
+
 import java.util.*;
 
 public class BT2 {
@@ -211,6 +211,7 @@ public class BT2 {
               break;
             }
           }
+          //last common node=>0-1 index
           return pathA.get(i-1).data;
    }
    // Lowest Common Ancestor - Optimized Approach
