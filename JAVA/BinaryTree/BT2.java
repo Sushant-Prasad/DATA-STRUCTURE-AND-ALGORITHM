@@ -37,7 +37,7 @@ public class BT2 {
     return height;
   }
 
-  // 2. Count of Nodes in the Tre
+  // 2. Count of Nodes in the Tree
   public static int countNode(Node root) {
     if (root == null) {
       return 0;
@@ -48,7 +48,7 @@ public class BT2 {
     return totalCountNode;
   }
 
-  // 3. Sum of all Nodes in the Tre
+  // 3. Sum of all Nodes in the Tree
   public static int sum(Node root) {
     if (root == null) {
       return 0;
@@ -307,6 +307,32 @@ public static int KthAncestor(Node root, int n, int k) {
   // Return distance from current node to target node
   return maxDist + 1;
 }
+  // 11. Transform to Sum Tree: change each node’s value to the sum of its original left and right subtrees;
+  public static int transformToSumTree(Node root) {
+    // Base case: an empty node contributes 0
+    if (root == null) return 0;
+
+    // Recursively convert left and right subtrees first
+    int leftSum = transformToSumTree(root.left);
+    int rightSum = transformToSumTree(root.right);
+
+    // Keep original value before overwriting
+    int oldVal = root.data;
+
+    // Node’s new value is sum of values in its left and right subtrees
+    root.data = leftSum + rightSum;
+
+    // Return the sum of the subtree rooted at this node (new node value + its original value)
+    return root.data + oldVal;
+  }
+  public static void preorder(Node root) {
+    if (root == null) return; // Base case
+
+    System.out.print(root.data + " "); // Visit root
+    preorder(root.left);              // Recur on left
+    preorder(root.right);             // Recur on right
+}
+
 
 
 
@@ -336,6 +362,8 @@ public static int KthAncestor(Node root, int n, int k) {
    
     System.out.println("Min Dist : "+minDist(root,4 , 6));
     System.out.println(KthAncestor(root, 5, 2));
+    transformToSumTree(root);
+    preorder(root);
 
   }
 
