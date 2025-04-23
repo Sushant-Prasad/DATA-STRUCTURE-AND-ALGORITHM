@@ -250,6 +250,7 @@ public class BT2 {
     return root;
   }
 // --------------------Minimum Distance bwtwwen Two Nodes-----------------------
+
   // Helper function :- distance between lca to node n
   public static int lcaDist(Node root, int n){
     //base case
@@ -280,6 +281,33 @@ public class BT2 {
   }
 
   
+// 10. Kth Ancestor of a Node in Binary Tree
+public static int KthAncestor(Node root, int n, int k) {
+  // Base case: if the node is null, return -1 (node not found)
+  if (root == null) return -1;
+
+  // If current node is the target node, return 0 (distance from itself)
+  if (root.data == n) return 0;
+
+  // Recursively check left and right subtrees
+  int leftDist = KthAncestor(root.left, n, k);
+  int rightDist = KthAncestor(root.right, n, k);
+
+  // If node is not found in both subtrees
+  if (leftDist == -1 && rightDist == -1) return -1;
+
+  // Take max distance from left or right (only one of them will be non -1)
+  int maxDist = Math.max(leftDist, rightDist);
+
+  // If current node is the kth ancestor (distance + 1 = k)
+  if (maxDist + 1 == k) {
+    System.out.println("Kth Ancestor is: " + root.data);  // optional output
+  }
+
+  // Return distance from current node to target node
+  return maxDist + 1;
+}
+
 
 
   public static void main(String[] args) {
@@ -307,6 +335,7 @@ public class BT2 {
     System.out.println(lca2(root, 7, 4).data);
    
     System.out.println("Min Dist : "+minDist(root,4 , 6));
+    System.out.println(KthAncestor(root, 5, 2));
 
   }
 
