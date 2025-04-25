@@ -27,7 +27,7 @@ public class BST1 {
       // If value is greater than root, insert in right subtree
       root.right = insert(root.right, val);
     } else {
-      // If value is smaller than or equal to root, insert in left subtree
+      // If value is smaller than or equal to root; insert in left subtree
       root.left = insert(root.left, val);
     }
 
