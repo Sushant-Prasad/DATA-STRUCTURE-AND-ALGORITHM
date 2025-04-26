@@ -4,9 +4,9 @@ public class BST1 {
   
   // Binary Tree Node definition
   static class Node {
-    int data;        // Value of the node
-    Node left;       // Left child
-    Node right;      // Right child
+    int data;    // Value of the node
+    Node left;   // Left child
+    Node right;   // Right child
 
     // Constructor to initialize node with data
     Node(int data) {
