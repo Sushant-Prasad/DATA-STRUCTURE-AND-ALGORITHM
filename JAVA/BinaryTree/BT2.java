@@ -249,7 +249,7 @@ public class BT2 {
     // if both sub tree returns node(not null) then common amncestor would be root
     return root;
   }
-// --------------------Minimum Distance bwtwwen Two Nodes-----------------------
+// --------------------Minimum Distance bwteen Two Nodes-----------------------
 
   // Helper function :- distance between lca to node n
   public static int lcaDist(Node root, int n){
