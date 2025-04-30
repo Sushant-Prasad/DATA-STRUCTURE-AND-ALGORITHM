@@ -38,7 +38,7 @@ public class BST1 {
   public static void inorder(Node root) {
     if (root == null) return; // Base case: if root is null, do nothing
 
-    inorder(root.left);                // Visit left subtree
+    inorder(root.left);    // Visit left subtree
     System.out.print(root.data + " "); // Visit root node
     inorder(root.right);               // Visit right subtree
   }
