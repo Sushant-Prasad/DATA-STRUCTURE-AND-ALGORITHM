@@ -54,7 +54,7 @@ public class BST1 {
 
     // Perform inorder traversal of the BST
     System.out.println("Inorder Traversal of BST:");
-    inorder(root); // Expected Output: 1 2 3 4 5 7
+    inorder(root); // Output: 1 2 3 4 5 7
   }
 
 }
