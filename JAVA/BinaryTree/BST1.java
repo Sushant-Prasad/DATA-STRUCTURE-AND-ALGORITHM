@@ -52,7 +52,7 @@ public class BST1 {
       root = insert(root, i);
     }
 
-   
+   // perform inorder traversal
     System.out.println("Inorder Traversal of BST:");
     inorder(root); // Output: 1 2 3 4 5 7
   }
