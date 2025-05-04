@@ -45,7 +45,7 @@ public class BST1 {
 
   public static void main(String[] args) {
     int arr[] = {5, 1, 3, 4, 2, 7}; 
-    Node root = null;               // Initialize root of BST
+    Node root = null; // Initialize root of BST
 
     // Insert each element into the BST
     for (int i : arr) {
