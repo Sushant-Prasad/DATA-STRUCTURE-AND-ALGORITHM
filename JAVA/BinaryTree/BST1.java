@@ -2,7 +2,7 @@ package BinaryTree;
 
 public class BST1 {
   
-  // Binary Tree Node definition
+  //Node definition
   static class Node {
     int data;    // Value of the node
     Node left;   // Left child
