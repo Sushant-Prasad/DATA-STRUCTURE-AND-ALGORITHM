@@ -33,6 +33,23 @@ public class BST1 {
 
     return root; // Return the unchanged root pointer
   }
+  // Binary Search in a Binary Search Tree (BST)
+public static boolean search(Node root, int key) {
+  // Base case: if the current node is null, the key is not found
+  if (root == null) return false;
+
+  // If the current node's data matches the key, return true
+  if (root.data == key) return true;
+
+  // If the key is greater than the current node's data, search in the right subtree
+  if (root.data < key) {
+      return search(root.right, key);
+  } else {
+      // If the key is smaller than the current node's data, search in the left subtree
+      return search(root.left, key);
+  }
+}
+
 
   // Inorder traversal (Left → Root → Right)
   public static void inorder(Node root) {
@@ -55,6 +72,8 @@ public class BST1 {
    // perform inorder traversal
     System.out.println("Inorder Traversal of BST:");
     inorder(root); // Output: 1 2 3 4 5 7
+    System.out.println();
+    System.out.println(search(root, 7));
   }
 
 }
