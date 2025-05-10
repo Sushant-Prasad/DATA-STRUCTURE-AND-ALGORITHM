@@ -94,6 +94,28 @@ public static Node delete(Node root, int val) {
 
   return root;
 }
+// Print all nodes in the BST that lie within the range [k1, k2]
+public static void printInRange(Node root, int k1, int k2) {
+  // Base case: if the node is null, do nothing
+  if (root == null) return;
+
+  // If root's data is within the range, first explore the left subtree,
+  // then print the root, and finally explore the right subtree
+  if (root.data >= k1 && root.data <= k2) {
+      printInRange(root.left, k1, k2);
+      System.out.print(root.data + " ");
+      printInRange(root.right, k1, k2);
+  }
+  // If root's data is less than k1, skip the left subtree
+  else if (root.data < k1) {
+      printInRange(root.right, k1, k2);
+  }
+  // If root's data is greater than k2, skip the right subtree
+  else {
+      printInRange(root.left, k1, k2);
+  }
+}
+
 
 
   // Inorder traversal (Left → Root → Right)
@@ -119,9 +141,10 @@ public static Node delete(Node root, int val) {
     System.out.println("Inorder Traversal of BST:");
     inorder(root); // Output: 1 2 3 4 5 7
     System.out.println();
-    System.out.println(search(root, 7));
-    delete(root, 5);
-    inorder(root);
+   // System.out.println(search(root, 7));
+   // delete(root, 5);
+    //inorder(root);
+    printInRange(root, 5, 12);
   }
 
 }
