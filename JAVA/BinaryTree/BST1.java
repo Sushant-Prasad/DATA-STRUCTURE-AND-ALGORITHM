@@ -147,6 +147,23 @@ public static void printRoot2leaf(Node root, ArrayList<Integer> path) {
     // Backtrack: remove the current node from path before returning
     path.remove(path.size() - 1);
 }
+// Validate if a binary tree is a Binary Search Tree (BST)
+public static boolean isValidBST(Node root, Node min, Node max) {
+  // An empty tree is a valid BST
+  if (root == null) return true;
+
+  // If current node violates the min constraint
+  if (min != null && root.data <= min.data) return false;
+
+  // If current node violates the max constraint
+  if (max != null && root.data >= max.data) return false;
+
+  // Recursively validate left and right subtrees
+  // Left subtree: max value should be less than current node
+  // Right subtree: min value should be greater than current node
+  return isValidBST(root.left, min, root) &&
+         isValidBST(root.right, root, max);
+}
 
 
 
@@ -180,6 +197,9 @@ public static void printRoot2leaf(Node root, ArrayList<Integer> path) {
     printInRange(root, 5, 12);
     System.out.println();
     printRoot2leaf(root,new ArrayList<>());
+    System.out.println();
+    System.out.println( isValidBST(root, null, null));
+   
   }
 
 }
