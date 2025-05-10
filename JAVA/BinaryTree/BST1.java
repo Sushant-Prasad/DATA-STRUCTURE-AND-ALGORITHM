@@ -1,5 +1,7 @@
 package BinaryTree;
 
+import java.util.ArrayList;
+
 public class BST1 {
   
   // Binary Tree Node definition
@@ -115,6 +117,37 @@ public static void printInRange(Node root, int k1, int k2) {
       printInRange(root.left, k1, k2);
   }
 }
+// Print a single root-to-leaf path
+public static void printPath(ArrayList<Integer> path) {
+    for (int i : path) {
+        System.out.print(i + "->");
+    }
+    System.out.println("Null"); // Indicate the end of the path
+}
+
+// Print all root-to-leaf paths in a binary tree
+public static void printRoot2leaf(Node root, ArrayList<Integer> path) {
+    // Base case: if the current node is null, return
+    if (root == null) {
+        return;
+    }
+
+    // Add the current node's data to the path
+    path.add(root.data);
+
+    // If the current node is a leaf, print the path
+    if (root.left == null && root.right == null) {
+        printPath(path);
+    }
+
+    // Recurse on the left and right subtrees
+    printRoot2leaf(root.left, path);
+    printRoot2leaf(root.right, path);
+
+    // Backtrack: remove the current node from path before returning
+    path.remove(path.size() - 1);
+}
+
 
 
 
@@ -145,6 +178,8 @@ public static void printInRange(Node root, int k1, int k2) {
    // delete(root, 5);
     //inorder(root);
     printInRange(root, 5, 12);
+    System.out.println();
+    printRoot2leaf(root,new ArrayList<>());
   }
 
 }
