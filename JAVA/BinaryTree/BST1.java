@@ -34,7 +34,7 @@ public class BST1 {
     return root; // Return the unchanged root pointer
   }
   // Binary Search in a Binary Search Tree (BST)
-public static boolean search(Node root, int key) {
+public static boolean search(Node root, int key) { // TC:-O(H)
   // Base case: if the current node is null, the key is not found
   if (root == null) return false;
 
@@ -49,6 +49,51 @@ public static boolean search(Node root, int key) {
       return search(root.left, key);
   }
 }
+// Find the inorder successor (smallest value in the right subtree)
+public static Node findInorderSuccesor(Node root) {
+  while (root.left != null) {
+      root = root.left;
+  }
+  return root;
+}
+
+// Delete a node from a Binary Search Tree (BST)
+public static Node delete(Node root, int val) {
+  // Traverse to the right subtree if the value to be deleted is greater
+  if (root.data < val) {
+      root.right = delete(root.right, val);
+  }
+  // Traverse to the left subtree if the value to be deleted is smaller
+  else if (root.data > val) {
+      root.left = delete(root.left, val);
+  }
+  // Node to be deleted is found
+  else {
+      // Case 1: Node is a leaf node
+      if (root.left == null && root.right == null) {
+          return null;
+      }
+
+      // Case 2: Node has only one child
+      if (root.left == null) {
+          return root.right;
+      } else if (root.right == null) {
+          return root.left;
+      }
+
+      // Case 3: Node has two children
+      // Find inorder successor from the right subtree
+      Node IS = findInorderSuccesor(root.right);
+
+      // Replace current node's data with inorder successor's data
+      root.data = IS.data;
+
+      // Delete the inorder successor
+      root.right = delete(root.right, IS.data);
+  }
+
+  return root;
+}
 
 
   // Inorder traversal (Left → Root → Right)
@@ -61,7 +106,8 @@ public static boolean search(Node root, int key) {
   }
 
   public static void main(String[] args) {
-    int arr[] = {5, 1, 3, 4, 2, 7}; 
+    //int arr[] = {5, 1, 3, 4, 2, 7}; 
+    int arr[] = {8,5,3,1,4,6,10,11,14};
     Node root = null; // Initialize root of BST
 
     // Insert each element into the BST
@@ -74,6 +120,8 @@ public static boolean search(Node root, int key) {
     inorder(root); // Output: 1 2 3 4 5 7
     System.out.println();
     System.out.println(search(root, 7));
+    delete(root, 5);
+    inorder(root);
   }
 
 }
