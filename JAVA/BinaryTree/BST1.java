@@ -165,9 +165,32 @@ public static boolean isValidBST(Node root, Node min, Node max) {
          isValidBST(root.right, root, max);
 }
 
+// Create a mirror of a Binary Search Tree (BST)
+public static Node createMirror(Node root) {
+  // Base case: if the tree is empty, return null
+  if (root == null) return null;
+
+  // Recursively create mirror of left and right subtrees
+  Node leftMirror = createMirror(root.left);
+  Node rightMirror = createMirror(root.right);
+
+  // Swap the left and right subtrees to create the mirror
+  root.left = rightMirror;
+  root.right = leftMirror;
+
+  // Return the current node after mirroring
+  return root;
+}
 
 
+// Preorder traversal (Root → Left → Right)
+public static void preorder(Node root) {
+  if (root == null) return; // Base case
 
+  System.out.print(root.data + " "); // Visit root
+  preorder(root.left);              // Recur on left
+  preorder(root.right);             // Recur on right
+}
   // Inorder traversal (Left → Root → Right)
   public static void inorder(Node root) {
     if (root == null) return; // Base case: if root is null, do nothing
@@ -199,6 +222,8 @@ public static boolean isValidBST(Node root, Node min, Node max) {
     printRoot2leaf(root,new ArrayList<>());
     System.out.println();
     System.out.println( isValidBST(root, null, null));
+    createMirror(root);
+    preorder(root);
    
   }
 
