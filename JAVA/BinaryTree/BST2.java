@@ -20,7 +20,7 @@ public class BST2 {
 
   // Convert a sorted array to a balanced Binary Search Tree (BST)
   public static Node createBST(ArrayList<Integer> arr, int s, int e) {
-    // Base case: if start index exceeds end, return null
+    // Base case: if start index exceeds end,return null
     if (s > e) {
       return null;
     }
