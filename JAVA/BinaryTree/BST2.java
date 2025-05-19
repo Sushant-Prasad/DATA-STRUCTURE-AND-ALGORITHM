@@ -35,7 +35,7 @@ public class BST2 {
 
     return root;
   }
- // get inorder sequence
+ // get  inorder sequence
   public static void getInorder(Node root , ArrayList<Integer> inorder){
     if(root == null)return;
     getInorder(root.left, inorder);
