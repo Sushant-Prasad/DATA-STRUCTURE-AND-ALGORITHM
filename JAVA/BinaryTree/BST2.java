@@ -27,7 +27,7 @@ public class BST2 {
 
     // Find the middle element to maintain balance
     int mid = (s + e) / 2;
-    Node root = new Node(arr.get(mid)); // Create root node
+    Node root = new Node(arr.get(mid)); //Create root node
 
        // Recursively build left and right subtrees
     root.left = createBST(arr, s, mid - 1);
