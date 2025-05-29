@@ -28,7 +28,7 @@ public class BST2 {
     // Find the middle element to maintain balance
     int mid = (s + e) / 2;
     Node root = new Node(arr.get(mid)); //Create root node
-// Recursively build left and right subtrees
+   // Recursively build left and right subtrees
     root.left = createBST(arr, s, mid - 1);
     root.right = createBST(arr, mid + 1, e);
 
@@ -50,7 +50,7 @@ public class BST2 {
 
   }
 
-  // Preorder traversal (Root → Left → Right)
+  //  Preorder traversal (Root → Left → Right)
   public static void preorder(Node root) {
     if (root == null) return; // Base case
 
