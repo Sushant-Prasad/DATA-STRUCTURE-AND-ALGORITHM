@@ -50,7 +50,7 @@ public class BST2 {
 
   }
 
-  //  Preorder traversal (Root → Left → Right)
+  //Preorder traversal (Root → Left → Right)
   public static void preorder(Node root) {
     if (root == null) return; // Base case
 
