@@ -54,9 +54,9 @@ public class BST2 {
   public static void preorder(Node root) {
     if (root == null) return; // Base case
 
-    System.out.print(root.data + " ");  // Visit root
-    preorder(root.left);                // Recur on left subtree
-    preorder(root.right);               // Recur on right subtree
+    System.out.print(root.data + " ");  //Visit root
+    preorder(root.left);                //Recur on left subtree
+    preorder(root.right);               //Recur on right subtree
   }
 
   public static void main(String[] args) {
