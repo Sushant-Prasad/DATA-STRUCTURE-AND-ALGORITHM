@@ -1,3 +1,13 @@
+// Function to insert a value into the BST
+ // Binary Search in a Binary Search Tree (BST)
+ // Find the inorder successor (smallest value in the right subtree)
+ // Delete a node from a Binary Search Tree (BST)
+ // Print all nodes in the BST that lie within the range [k1, k2]
+ // Print a single root-to-leaf path
+ // Print all root-to-leaf paths in a binary tree
+ // Validate if a binary tree is a Binary Search Tree (BST)
+ // Create a mirror of a Binary Search Tree (BST)
+
 package BinaryTree;
 
 import java.util.ArrayList;
