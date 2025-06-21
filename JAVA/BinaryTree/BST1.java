@@ -1,6 +1,6 @@
-// 1.Function to insert a value into the BST
+ // 1.Function to insert a value into the BST
  // 2.Binary Search in a Binary Search Tree (BST)
- //3.Find the inorder successor (smallest value in the right subtree)
+ // 3.Find the inorder successor (smallest value in the right subtree)
  // 4.Delete a node from a Binary Search Tree (BST)
  // 5.Print all nodes in the BST that lie within the range [k1, k2]
  // 6.Print a single root-to-leaf path
