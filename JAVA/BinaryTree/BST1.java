@@ -43,7 +43,7 @@ public class BST1 {
       root.left = insert(root.left, val);
     }
 
-    return root; // Return the unchanged root pointer
+    return root; //Return the unchanged root pointer
   }
   // Binary Search in a Binary Search Tree (BST)
 public static boolean search(Node root, int key) { // TC:-O(H)
