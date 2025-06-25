@@ -77,7 +77,7 @@ arr.add(12);
     // Print preorder traversal of the BST
     preorder(root);
     System.out.println();
-    Node root2 =balancedBST(root);
+    Node root2 = balancedBST(root);
     preorder(root2);
   }
 }
