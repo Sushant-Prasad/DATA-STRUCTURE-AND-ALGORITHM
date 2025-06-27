@@ -43,7 +43,7 @@ public class BST2 {
     inorder.add(root.data);
     getInorder(root.right, inorder);
   }
-  //convert BST to Balanced BST
+  // convert BST to Balanced BST
   public static Node balancedBST(Node root){
     ArrayList<Integer> inorderSeq = new ArrayList<>();
     getInorder(root,inorderSeq);
