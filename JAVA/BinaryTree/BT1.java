@@ -1,4 +1,8 @@
-// This package groups related classes under BinaryTree
+// 1.Method to build binary tree from pre-order traversal input array
+// 2.Preorder traversal (Root → Left → Right)
+// 3.Inorder traversal (Left → Root → Right)
+ // 4.Postorder traversal (Left → Right → Root)
+ // 5.Level order traversal (Breadth First Search)
 package BinaryTree;
 
 // Importing required classes (List, Queue, etc.)
@@ -25,7 +29,7 @@ public class BT1 {
     static class Tree {
         static int idx = -1; // Keeps track of the current index while building the tree
 
-        // Method to build binary tree from pre-order traversal input array
+        // 1.Method to build binary tree from pre-order traversal input array
         public static Node buildTree(int[] nodes) {
             idx++; // Move to next index
 
@@ -47,7 +51,7 @@ public class BT1 {
             return newNode;
         }
 
-        // Preorder traversal (Root → Left → Right)
+        // 2.Preorder traversal (Root → Left → Right)
         public static void preorder(Node root) {
             if (root == null) return; // Base case
 
@@ -56,7 +60,7 @@ public class BT1 {
             preorder(root.right);             // Recur on right
         }
 
-        // Inorder traversal (Left → Root → Right)
+        // 3.Inorder traversal (Left → Root → Right)
         public static void inorder(Node root) {
             if (root == null) return; // Base case
 
@@ -65,7 +69,7 @@ public class BT1 {
             inorder(root.right);             // Recur on right
         }
 
-        // Postorder traversal (Left → Right → Root)
+        // 4.Postorder traversal (Left → Right → Root)
         public static void postorder(Node root) {
             if (root == null) return; // Base case
 
@@ -74,7 +78,7 @@ public class BT1 {
             System.out.print(root.data + " "); // Visit root
         }
 
-        // Level order traversal (Breadth First Search)
+        // 5.Level order traversal (Breadth First Search)
         public static void levelorder(Node root) {
             if (root == null) return; // If tree is empty, exit
 
