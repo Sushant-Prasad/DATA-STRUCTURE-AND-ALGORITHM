@@ -131,7 +131,7 @@ public class BT2 {
   }
 
   // ---------------------Subtree of another tree------------------
-  // ---------------------Top view of a tree-----------------------
+  // ---------------------6.Top view of a tree-----------------------
   public static class Info2 { // Helper class to store node and its horizontal distance for top view
     Node node;
     int hd;
@@ -180,7 +180,7 @@ public class BT2 {
 
   }
 
-  // ------------------Kth Level of a tree-----------------------------
+  // ------------------7.Kth Level of a tree-----------------------------
   public static void KthLevel(Node root, int level, int k) {
     // base case
     if (root == null)
@@ -194,7 +194,7 @@ public class BT2 {
 
   }
 
-  // ------------------------Lowest Common Ancestor-----------------------
+  // ------------------------8.Lowest Common Ancestor-----------------------
   // 8. Get path from root to a given node (used for LCA)
   public static boolean getPath(Node root, int node, ArrayList<Node> path) {
     // base case
@@ -249,7 +249,7 @@ public class BT2 {
     // if both sub tree returns node(not null) then common amncestor would be root
     return root;
   }
-// --------------------Minimum Distance bwteen Two Nodes-----------------------
+// --------------------9.Minimum Distance bwteen Two Nodes-----------------------
 
   // Helper function :- distance between lca to node n
   public static int lcaDist(Node root, int n){
