@@ -97,7 +97,6 @@ public class BT2 {
     return newInfo;
   }
 
-  // ---------------------Subtree of another tree------------------
   // Helper class to Check if two trees are identical
   public static boolean isIdentical(Node node, Node subRoot) {
     if (node == null && subRoot == null) {
