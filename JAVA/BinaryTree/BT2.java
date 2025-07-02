@@ -96,7 +96,7 @@ public class BT2 {
 
     return newInfo;
   }
-
+  // ---------------------Subtree of another tree------------------
   // Helper class to Check if two trees are identical
   public static boolean isIdentical(Node node, Node subRoot) {
     if (node == null && subRoot == null) {
@@ -129,7 +129,7 @@ public class BT2 {
     return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
   }
 
-  // ---------------------Subtree of another tree------------------
+  
   // ---------------------6.Top view of a tree-----------------------
   public static class Info2 { // Helper class to store node and its horizontal distance for top view
     Node node;
