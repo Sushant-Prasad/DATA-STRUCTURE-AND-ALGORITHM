@@ -280,7 +280,7 @@ public class BT2 {
   }
 
   
-// 10. Kth Ancestor of a Node in Binary Tree
+// 10.Kth Ancestor of a Node in Binary Tree
 public static int KthAncestor(Node root, int n, int k) {
   // Base case: if the node is null, return -1 (node not found)
   if (root == null) return -1;
