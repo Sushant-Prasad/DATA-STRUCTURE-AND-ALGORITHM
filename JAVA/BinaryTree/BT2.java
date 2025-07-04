@@ -306,7 +306,7 @@ public static int KthAncestor(Node root, int n, int k) {
   // Return distance from current node to target node
   return maxDist + 1;
 }
-  // 11. Transform to Sum Tree: change each node’s value to the sum of its original left and right subtrees;
+  // 11.Transform to Sum Tree: change each node’s value to the sum of its original left and right subtrees;
   public static int transformToSumTree(Node root) {
     // Base case: an empty node contributes 0
     if (root == null) return 0;
