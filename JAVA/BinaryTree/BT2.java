@@ -229,7 +229,7 @@ public class BT2 {
     return pathA.get(i - 1).data;
   }
 
-  // 8. Lowest Common Ancestor - Optimized Approach
+  // 8.Lowest Common Ancestor - Optimized Approach
   public static Node lca2(Node root, int a, int b) {// TC:-O(N) & SC:-O(1)
     // base case
     if (root == null || root.data == a || root.data == b) {
