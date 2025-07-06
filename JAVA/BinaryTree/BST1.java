@@ -28,7 +28,7 @@ public class BST1 {
     }
   }
 
-  //1. Function to insert a value into the BST
+  //1.Function to insert a value into the BST
   public static Node insert(Node root, int val) {
     if (root == null) {
       // If tree is empty;create new node and return it
