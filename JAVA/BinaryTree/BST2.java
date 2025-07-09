@@ -1,5 +1,5 @@
   // 1.Convert a sorted array to a balanced Binary Search Tree (BST)
-  // 2.convert BST to Balanced BST
+  // 2.Convert BST to Balanced BST
 package BinaryTree;
 
 import java.util.ArrayList;
