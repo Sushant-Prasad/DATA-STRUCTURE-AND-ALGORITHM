@@ -8,6 +8,9 @@
 // 6. Top View of a Binary Tree
 // 7. Print Kth Level of Tree
 // 8. Lowest Common Ancestor (Path-based and Optimized)
+// 9.Minimum Distance bwteen Two Nodes
+// 10.Kth Ancestor of a Node in Binary Tree
+ // 11.Transform to Sum Tree: change each node’s value to the sum of its original left and right subtrees
 package BinaryTree;
 
 import java.util.*;
@@ -201,7 +204,7 @@ public class BT2 {
       return false;
     }
 
-    path.add(root); // root will always be a common ancestor
+    path.add(root); // add current node in path
     if (root.data == node) {
       return true;
     }
@@ -209,7 +212,7 @@ public class BT2 {
     if (getPath(root.left, node, path) || getPath(root.right, node, path)) {
       return true;
     }
-    path.remove(path.size() - 1); // node is not a part of path
+    path.remove(path.size() - 1); // current node is not a part of path
     return false;
   }
 
@@ -225,7 +228,7 @@ public class BT2 {
         break;
       }
     }
-    // last common node=>0-1 index
+    // last common node=>i-1 index
     return pathA.get(i - 1).data;
   }
 
