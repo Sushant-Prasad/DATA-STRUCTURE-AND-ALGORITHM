@@ -8,9 +8,9 @@
 // 6. Top View of a Binary Tree
 // 7. Print Kth Level of Tree
 // 8. Lowest Common Ancestor (Path-based and Optimized)
-// 9.Minimum Distance bwteen Two Nodes
-// 10.Kth Ancestor of a Node in Binary Tree
- // 11.Transform to Sum Tree: change each node’s value to the sum of its original left and right subtrees
+// 9. Minimum Distance bwteen Two Nodes
+// 10. Kth Ancestor of a Node in Binary Tree
+// 11.Transform to Sum Tree: change each node’s value to the sum of its original left and right subtrees
 package BinaryTree;
 
 import java.util.*;
