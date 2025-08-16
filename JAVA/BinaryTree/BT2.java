@@ -99,6 +99,7 @@ public class BT2 {
 
     return newInfo;
   }
+
   // ---------------------Subtree of another tree------------------
   // Helper class to Check if two trees are identical
   public static boolean isIdentical(Node node, Node subRoot) {
@@ -132,7 +133,6 @@ public class BT2 {
     return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
   }
 
-  
   // ---------------------6.Top view of a tree-----------------------
   public static class Info2 { // Helper class to store node and its horizontal distance for top view
     Node node;
@@ -251,28 +251,29 @@ public class BT2 {
     // if both sub tree returns node(not null) then common amncestor would be root
     return root;
   }
-// --------------------9.Minimum Distance bwteen Two Nodes-----------------------
+  // --------------------9.Minimum Distance bwteen Two
+  // Nodes-----------------------
 
   // Helper function :- distance between lca to node n
-  public static int lcaDist(Node root, int n){
-    //base case
-    if(root == null){
+  public static int lcaDist(Node root, int n) {
+    // base case
+    if (root == null) {
       return -1;
     }
-    if(root.data==n){
+    if (root.data == n) {
       return 0;
     }
     int leftLcaDist = lcaDist(root.left, n);
     int rightLcaDist = lcaDist(root.right, n);
-    if(leftLcaDist == -1 && rightLcaDist == -1){
-       return -1;
-    }else if(leftLcaDist == -1){
-       return rightLcaDist+1;
-    }else{
-      return leftLcaDist+1;
+    if (leftLcaDist == -1 && rightLcaDist == -1) {
+      return -1;
+    } else if (leftLcaDist == -1) {
+      return rightLcaDist + 1;
+    } else {
+      return leftLcaDist + 1;
     }
 
-   }
+  }
 
   // 9.Minimum Distance bwtwwen Two Nodes
   public static int minDist(Node root, int a, int b) {
@@ -282,37 +283,42 @@ public class BT2 {
     return dist1 + dist2;
   }
 
-  
-// 10.Kth Ancestor of a Node in Binary Tree
-public static int KthAncestor(Node root, int n, int k) {
-  // Base case: if the node is null, return -1 (node not found)
-  if (root == null) return -1;
+  // 10.Kth Ancestor of a Node in Binary Tree
+  public static int KthAncestor(Node root, int n, int k) {
+    // Base case: if the node is null, return -1 (node not found)
+    if (root == null)
+      return -1;
 
-  // If current node is the target node, return 0 (distance from itself)
-  if (root.data == n) return 0;
+    // If current node is the target node, return 0 (distance from itself)
+    if (root.data == n)
+      return 0;
 
-  // Recursively check left and right subtrees
-  int leftDist = KthAncestor(root.left, n, k);
-  int rightDist = KthAncestor(root.right, n, k);
+    // Recursively check left and right subtrees
+    int leftDist = KthAncestor(root.left, n, k);
+    int rightDist = KthAncestor(root.right, n, k);
 
-  // If node is not found in both subtrees
-  if (leftDist == -1 && rightDist == -1) return -1;
+    // If node is not found in both subtrees
+    if (leftDist == -1 && rightDist == -1)
+      return -1;
 
-  // Take max distance from left or right (only one of them will be non -1)
-  int maxDist = Math.max(leftDist, rightDist);
+    // Take max distance from left or right (only one of them will be non -1)
+    int maxDist = Math.max(leftDist, rightDist);
 
-  // If current node is the kth ancestor (distance + 1 = k)
-  if (maxDist + 1 == k) {
-    System.out.println("Kth Ancestor is: " + root.data);  // optional output
+    // If current node is the kth ancestor (distance + 1 = k)
+    if (maxDist + 1 == k) {
+      System.out.println("Kth Ancestor is: " + root.data); // optional output
+    }
+
+    // Return distance from current node to target node
+    return maxDist + 1;
   }
 
-  // Return distance from current node to target node
-  return maxDist + 1;
-}
-  // 11.Transform to Sum Tree: change each node’s value to the sum of its original left and right subtrees;
+  // 11.Transform to Sum Tree: change each node’s value to the sum of its original
+  // left and right subtrees;
   public static int transformToSumTree(Node root) {
     // Base case: an empty node contributes 0
-    if (root == null) return 0;
+    if (root == null)
+      return 0;
 
     // Recursively convert left and right subtrees first
     int leftSum = transformToSumTree(root.left);
@@ -324,19 +330,19 @@ public static int KthAncestor(Node root, int n, int k) {
     // Node’s new value is sum of values in its left and right subtrees
     root.data = leftSum + rightSum;
 
-    // Return the sum of the subtree rooted at this node (new node value + its original value)
+    // Return the sum of the subtree rooted at this node (new node value + its
+    // original value)
     return root.data + oldVal;
   }
+
   public static void preorder(Node root) {
-    if (root == null) return; // Base case
+    if (root == null)
+      return; // Base case
 
     System.out.print(root.data + " "); // Visit root
-    preorder(root.left);              // Recur on left
-    preorder(root.right);             // Recur on right
-}
-
-
-
+    preorder(root.left); // Recur on left
+    preorder(root.right); // Recur on right
+  }
 
   public static void main(String[] args) {
     Node root = new Node(1);
@@ -361,8 +367,8 @@ public static int KthAncestor(Node root, int n, int k) {
     System.out.println();
     System.out.println(lca(root, 5, 4));
     System.out.println(lca2(root, 7, 4).data);
-   
-    System.out.println("Min Dist : "+minDist(root,4 , 6));
+
+    System.out.println("Min Dist : " + minDist(root, 4, 6));
     System.out.println(KthAncestor(root, 5, 2));
     transformToSumTree(root);
     preorder(root);

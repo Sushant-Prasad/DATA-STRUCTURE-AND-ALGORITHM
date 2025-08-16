@@ -45,7 +45,7 @@ public class BST1 {
 
     return root; //Return the unchanged root pointer
   }
-  // Binary Search in a Binary Search Tree (BST)
+  // 2.Binary Search in a Binary Search Tree (BST)
 public static boolean search(Node root, int key) { // TC:-O(H)
   // Base case: if the current node is null, the key is not found
   if (root == null) return false;
@@ -61,7 +61,7 @@ public static boolean search(Node root, int key) { // TC:-O(H)
       return search(root.left, key);
   }
 }
-// Find the inorder successor (smallest value in the right subtree)
+// 3.Find the inorder successor (smallest value in the right subtree)
 public static Node findInorderSuccesor(Node root) {
   while (root.left != null) {
       root = root.left;
@@ -69,7 +69,7 @@ public static Node findInorderSuccesor(Node root) {
   return root;
 }
 
-// Delete a node from a Binary Search Tree (BST)
+// 4.Delete a node from a Binary Search Tree (BST)
 public static Node delete(Node root, int val) {
   // Traverse to the right subtree if the value to be deleted is greater
   if (root.data < val) {
@@ -106,7 +106,7 @@ public static Node delete(Node root, int val) {
 
   return root;
 }
-// Print all nodes in the BST that lie within the range [k1, k2]
+// 5.Print all nodes in the BST that lie within the range [k1, k2]
 public static void printInRange(Node root, int k1, int k2) {
   // Base case: if the node is null, do nothing
   if (root == null) return;
@@ -127,7 +127,7 @@ public static void printInRange(Node root, int k1, int k2) {
       printInRange(root.left, k1, k2);
   }
 }
-// Print a single root-to-leaf path
+// 6.Print a single root-to-leaf path
 public static void printPath(ArrayList<Integer> path) {
     for (int i : path) {
         System.out.print(i + "->");
@@ -135,7 +135,7 @@ public static void printPath(ArrayList<Integer> path) {
     System.out.println("Null"); // Indicate the end of the path
 }
 
-// Print all root-to-leaf paths in a binary tree
+// 7.Print all root-to-leaf paths in a binary tree
 public static void printRoot2leaf(Node root, ArrayList<Integer> path) {
     // Base case: if the current node is null, return
     if (root == null) {
@@ -157,7 +157,7 @@ public static void printRoot2leaf(Node root, ArrayList<Integer> path) {
     // Backtrack: remove the current node from path before returning
     path.remove(path.size() - 1);
 }
-// Validate if a binary tree is a Binary Search Tree (BST)
+// 8.Validate if a binary tree is a Binary Search Tree (BST)
 public static boolean isValidBST(Node root, Node min, Node max) {
   // An empty tree is a valid BST
   if (root == null) return true;
@@ -175,7 +175,7 @@ public static boolean isValidBST(Node root, Node min, Node max) {
          isValidBST(root.right, root, max);
 }
 
-// Create a mirror of a Binary Search Tree (BST)
+// 9.Create a mirror of a Binary Search Tree (BST)
 public static Node createMirror(Node root) {
   // Base case: if the tree is empty, return null
   if (root == null) return null;
