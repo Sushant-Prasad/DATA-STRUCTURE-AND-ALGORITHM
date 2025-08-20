@@ -1,5 +1,6 @@
 // 1.Convert a sorted array to a balanced Binary Search Tree (BST)
 // 2.Convert BST to Balanced BST
+//3. Find size of the largest BST in a Binary Tree
 package BinaryTree;
 
 import java.util.ArrayList;
@@ -66,6 +67,60 @@ public class BST2 {
     // Step 3: Return the new balanced BST root
     return root;
   }
+  // 3. Find size of the largest BST in a Binary Tree
+public static class Info {
+    boolean isValidBST; // whether the current subtree is a BST
+    int size;           // size (number of nodes) in the current subtree
+    int max;            // maximum value in the current subtree
+    int min;            // minimum value in the current subtree
+
+    Info(boolean isValidBST, int size, int max, int min) {
+        this.isValidBST = isValidBST;
+        this.size = size;
+        this.max = max;
+        this.min = min;
+    }
+}
+
+// Global variable to store the size of the largest BST found so far
+public static int maxBSTsize = 0;
+
+public static Info largestBST(Node root) {
+    // Base case: empty tree is a valid BST of size 0
+    if (root == null) {
+        return new Info(true, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    // Recursively get info about left and right subtrees
+    Info leftInfo = largestBST(root.left);
+    Info rightInfo = largestBST(root.right);
+
+    // Compute size of current subtree
+    int size = leftInfo.size + rightInfo.size + 1;
+
+    // Compute min and max values within current subtree
+    int min = Math.min(root.data, Math.min(leftInfo.min, rightInfo.min));
+    int max = Math.max(root.data, Math.max(leftInfo.max, rightInfo.max));
+
+    // Check if current subtree violates BST property:
+    // - root must be greater than all nodes in left subtree
+    // - root must be smaller than all nodes in right subtree
+    if (root.data <= leftInfo.max || root.data >= rightInfo.min) {
+        // Not a valid BST, return Info with isValidBST = false
+        return new Info(false, size, max, min);
+    }
+
+    // If both left and right subtrees are valid BSTs, then this subtree is also a valid BST
+    if (leftInfo.isValidBST && rightInfo.isValidBST) {
+        // Update global maxBSTsize with current subtree size
+        maxBSTsize = Math.max(maxBSTsize, size);
+        return new Info(true, size, max, min);
+    }
+
+    // Otherwise, this subtree is not a BST
+    return new Info(false, size, max, min);
+}
+
 
   // Preorder traversal (Root → Left → Right)
   public static void preorder(Node root) {
@@ -86,6 +141,18 @@ public class BST2 {
     arr.add(10);
     arr.add(11);
     arr.add(12);
+
+    Node roo3 = new Node(50);
+    roo3.left = new Node(30);
+    roo3.left.left=new Node(5);
+    roo3.left.right=new Node(20);
+    roo3.right =new Node(60);
+    roo3.right.left =new Node(45);
+    roo3.right.right =new Node(70);
+    roo3.right.right.left =new Node(65);
+    roo3.right.right.right =new Node(80);
+    Info info = largestBST(roo3);
+    System.out.println("largest BST size "+ maxBSTsize);
 
     // Create a balanced BST from the sorted array
     Node root = createBST(arr, 0, arr.size() - 1);
