@@ -1,6 +1,6 @@
 // 1.Convert a sorted array to a balanced Binary Search Tree (BST)
 // 2.Convert BST to Balanced BST
-//3. Find size of the largest BST in a Binary Tree
+//3.Find size of the largest BST in a Binary Tree
 package BinaryTree;
 
 import java.util.ArrayList;
@@ -120,6 +120,48 @@ public static Info largestBST(Node root) {
     // Otherwise, this subtree is not a BST
     return new Info(false, size, max, min);
 }
+// 4. Merge two BSTs into a single balanced BST
+public static Node mergeBSTs(Node root1, Node root2) { //Linear:-O(N+M)
+    // Step 1: Get inorder traversal of both BSTs
+    // Inorder traversal of BST always gives sorted sequence
+    ArrayList<Integer> arr1 = new ArrayList<>();
+    ArrayList<Integer> arr2 = new ArrayList<>();
+    getInorder(root1, arr1); 
+    getInorder(root2, arr2);
+
+    // Step 2: Merge the two sorted arrays (like merge step in merge sort)
+    int i = 0, j = 0;
+    ArrayList<Integer> finalArr = new ArrayList<>();
+
+    while (i < arr1.size() && j < arr2.size()) {
+        if (arr1.get(i) < arr2.get(j)) {
+            finalArr.add(arr1.get(i));
+            i++;
+        } else {
+            finalArr.add(arr2.get(j));
+            j++;
+        }
+    }
+
+    // Add remaining elements from arr1
+    while (i < arr1.size()) {
+        finalArr.add(arr1.get(i));
+        i++;
+    }
+
+    // Add remaining elements from arr2
+    while (j < arr2.size()) {
+        finalArr.add(arr2.get(j));
+        j++;
+    }
+
+    // Step 3: Convert merged sorted array into a balanced BST
+    Node root = createBST(finalArr, 0, finalArr.size() - 1);
+
+    // Step 4: Return the root of the new balanced BST
+    return root;
+}
+
 
 
   // Preorder traversal (Root → Left → Right)
@@ -142,6 +184,18 @@ public static Info largestBST(Node root) {
     arr.add(11);
     arr.add(12);
 
+    
+
+    // Create a balanced BST from the sorted array
+    Node root = createBST(arr, 0, arr.size() - 1);
+
+    // Print preorder traversal of the BST
+    preorder(root);
+    System.out.println();
+    Node root2 = balancedBST(root);
+    preorder(root2);
+    System.out.println();
+//largest BST
     Node roo3 = new Node(50);
     roo3.left = new Node(30);
     roo3.left.left=new Node(5);
@@ -154,13 +208,16 @@ public static Info largestBST(Node root) {
     Info info = largestBST(roo3);
     System.out.println("largest BST size "+ maxBSTsize);
 
-    // Create a balanced BST from the sorted array
-    Node root = createBST(arr, 0, arr.size() - 1);
+    //mergeBSTs
+    Node root4 = new Node(2); //BST1
+         root4.left =new Node(1);
+         root4.right=new Node(3);
 
-    // Print preorder traversal of the BST
-    preorder(root);
-    System.out.println();
-    Node root2 = balancedBST(root);
-    preorder(root2);
+         Node root5 = new Node(9); //BST2
+         root5.left =new Node(4);
+         root5.right=new Node(12);
+         Node rootFinal = mergeBSTs(root4, root5);
+         System.out.println("Merged BST root "+rootFinal.data);
+         preorder(rootFinal);
   }
 }
