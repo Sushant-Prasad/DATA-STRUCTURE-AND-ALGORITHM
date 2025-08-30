@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * Space Complexity:
  *  - O(n) to store heap elements in the ArrayList
  */
-public class MaxHeap {
+public class Heap2 {
 
   // Inner Heap class
   public static class Heap {
