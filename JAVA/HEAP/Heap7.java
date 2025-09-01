@@ -33,7 +33,7 @@ import java.util.PriorityQueue;
  *
  * Space Complexity: O(n) for the heap
  */
-public class Heap6Comparator {
+public class Heap7 {
 
   // Helper class representing a row with its soldier count and index
   public static class Row {
