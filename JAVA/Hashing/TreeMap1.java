@@ -35,9 +35,9 @@ public class TreeMap1 {
     System.out.println("TreeMap (keys sorted): " + tm);
 
     
-    // -------------------------------
+    //-------------------------------
     // HashMap Example
-    // -------------------------------
+    //-------------------------------
     HashMap<String, Integer> hm = new HashMap<>();
 
     // put() → Insert elements into HashMap
