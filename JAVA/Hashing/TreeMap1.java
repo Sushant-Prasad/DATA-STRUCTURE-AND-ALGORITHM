@@ -31,7 +31,7 @@ public class TreeMap1 {
     tm.put("China", 140);
     tm.put("Japan", 40);
 
-    // Print TreeMap → keys stored in sorted (alphabetical) order
+    // Print TreeMap :- keys stored in sorted (alphabetical) order
     System.out.println("TreeMap (keys sorted): " + tm);
 
     
