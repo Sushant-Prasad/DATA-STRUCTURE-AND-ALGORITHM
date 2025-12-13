@@ -1,5 +1,5 @@
 package Arrays;
-//lagest number in array
+//largest number in array
 import java.util.*;
 public class array4 { 
     public static void main(String args[]){
