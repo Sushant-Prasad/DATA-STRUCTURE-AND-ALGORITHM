@@ -25,7 +25,7 @@ package Arrays;
 //  ----------
 //  Just check every element until you either:
 //      ✔ Find the element, or  
-      ✔ Reach the end of the array.
+ //     ✔ Reach the end of the array.
 //
 // ============================================================================
 //  APPROACH:
