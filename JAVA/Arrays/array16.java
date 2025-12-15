@@ -1,50 +1,143 @@
-/*You are given a 0-indexed array of n integers differences, which describes the differences between each pair of consecutive integers of a hidden sequence of length (n + 1). More formally, call the hidden sequence hidden, then we have that differences[i] = hidden[i + 1] - hidden[i].
-
-You are further given two integers lower and upper that describe the inclusive range of values [lower, upper] that the hidden sequence can contain.
-
-For example, given differences = [1, -3, 4], lower = 1, upper = 6, the hidden sequence is a sequence of length 4 whose elements are in between 1 and 6 (inclusive).
-[3, 4, 1, 5] and [4, 5, 2, 6] are possible hidden sequences.
-[5, 6, 3, 7] is not possible since it contains an element greater than 6.
-[1, 2, 3, 4] is not possible since the differences are not correct.
-Return the number of possible hidden sequences there are. If there are no possible sequences, return 0.
-Link:-https://leetcode.com/problems/count-the-hidden-sequences/description/?envType=daily-question&envId=2025-04-21 
-*/
 package Arrays;
+
+// ============================================================================
+//  TITLE:
+//  Count the Hidden Sequences
+//  (LeetCode – Count the Hidden Sequences)
+// ============================================================================
+//
+//  PROBLEM STATEMENT:
+//  ------------------
+//  You are given an integer array `differences` where
+//      differences[i] = hidden[i + 1] - hidden[i].
+//
+//  You are also given two integers `lower` and `upper` which define
+//  the inclusive range [lower, upper] for the values in the hidden array.
+//
+//  The task is to count how many possible hidden arrays exist
+//  that satisfy:
+//      • The difference constraints
+//      • All values lie within [lower, upper]
+//
+// ============================================================================
+//  INTUITION:
+//  ----------
+//  Instead of constructing all possible arrays, we observe that:
+//  • The hidden array is fully determined once its first element is fixed.
+//  • Using prefix sums of differences, we can track the minimum and maximum
+//    values the array can reach relative to the starting point.
+//  • The valid starting values are those that keep the entire array
+//    within the given bounds.
+//
+// ============================================================================
+//  APPROACH:
+//  ----------
+//  1. Assume hidden[0] = 0 (relative starting point).
+//  2. Traverse the `differences` array and build cumulative sum (`curr`).
+//  3. Track:
+//        • minVal → minimum prefix sum
+//        • maxVal → maximum prefix sum
+//  4. For the hidden array to be valid:
+//        lower ≤ start + minVal
+//        start + maxVal ≤ upper
+//  5. Count valid starting values using the intersection of these ranges.
+//
+// ============================================================================
+//  MATHEMATICAL DERIVATION:
+//  ------------------------
+//      start ≥ lower - minVal
+//      start ≤ upper - maxVal
+//
+//  Number of valid starts =
+//      (upper - maxVal) - (lower - minVal) + 1
+//
+// ============================================================================
+//  EXAMPLE:
+//  --------
+//      differences = [1, -3, 4]
+//      lower = 1, upper = 6
+//
+//      Prefix sums: [0, 1, -2, 2]
+//      minVal = -2, maxVal = 2
+//
+//      Valid start range:
+//          start ≥ 1 - (-2) = 3
+//          start ≤ 6 - 2    = 4
+//
+//      Total valid arrays = 2
+//
+// ============================================================================
+//  DRY RUN:
+//  --------
+//      curr = 0
+//      d = 1  → curr = 1  → min = 0,  max = 1
+//      d = -3 → curr = -2 → min = -2, max = 1
+//      d = 4  → curr = 2  → min = -2, max = 2
+//
+//      Result = (6 - 2) - (1 - (-2)) + 1
+//              = 4 - 3 + 1 = 2
+//
+// ============================================================================
+//  KEY POINTS:
+//  ------------
+//  ✔ Efficient single-pass solution
+//  ✔ No need to build actual arrays
+//  ✔ Uses prefix sum and range intersection
+//  ✔ Common interview & LeetCode problem
+//
+// ============================================================================
+//  SPECIAL NOTES FOR LOGIC:
+//  ------------------------
+//  • Starting point is assumed as 0 for relative calculation
+//  • Prefix min and max decide feasibility
+//  • Early return if range becomes invalid
+//
+// ============================================================================
+//  TIME COMPLEXITY:  O(n)
+//  SPACE COMPLEXITY: O(1)
+// ============================================================================
+//
 
 public class Array16 {
 
-    //  Method to calculate number of valid arrays based on differences and bounds
+    // ------------------------------------------------------------------------
+    // METHOD NAME: numberOfArrays
+    // PURPOSE    : Returns the number of valid hidden arrays
+    // ------------------------------------------------------------------------
     public int numberOfArrays(int[] differences, int lower, int upper) {
-        int curr = 0; // lets starting the array from array[0]=0
-        int minVal = 0;//minimum value of array
-        int maxVal = 0;//max value of array
 
-        // Traverse through the differences
+        int curr = 0;      // Current prefix sum (relative value)
+        int minVal = 0;    // Minimum prefix sum
+        int maxVal = 0;    // Maximum prefix sum
+
+        // Traverse through differences to build prefix sums
         for (int d : differences) {
             curr += d;
             minVal = Math.min(minVal, curr);
             maxVal = Math.max(maxVal, curr);
 
-            // If difference range exceeds limits, no valid array possible
+            // Early termination if no valid starting point exists
             if ((upper - maxVal) - (lower - minVal) + 1 <= 0) {
                 return 0;
             }
         }
 
-        // Total number of valid arrays possible
+        // Total number of valid starting values
         return (upper - maxVal) - (lower - minVal) + 1;
     }
 
-    // ---------------- Driver Code ----------------
+    // ------------------------------------------------------------------------
+    // MAIN METHOD (Driver Code)
+    // ------------------------------------------------------------------------
     public static void main(String[] args) {
-        Array16 a = new Array16();
+
+        Array16 obj = new Array16();
 
         int[] differences = {1, -3, 4};
         int lower = 1;
         int upper = 6;
 
-        int result = a.numberOfArrays(differences, lower, upper);
+        int result = obj.numberOfArrays(differences, lower, upper);
         System.out.println("Number of valid arrays: " + result);
     }
 }
-
