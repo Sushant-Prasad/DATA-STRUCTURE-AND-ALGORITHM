@@ -976,16 +976,16 @@ public void reverse() {
  -----------------
  The method follows a **three-step approach**:
 
- 1️⃣ Find the middle of the linked list  
+ 1️ Find the middle of the linked list  
     • Uses the slow–fast pointer technique.
     • Slow pointer moves 1 step, fast pointer moves 2 steps.
     • When fast reaches the end, slow is at the middle.
 
- 2️⃣ Reverse the second half of the linked list  
+ 2️ Reverse the second half of the linked list  
     • Reverse nodes starting from the middle node.
     • This allows backward comparison using forward traversal.
 
- 3️⃣ Compare both halves  
+ 3️ Compare both halves  
     • Compare nodes from the start (left half) and reversed second half.
     • If any mismatch occurs → not a palindrome.
 
