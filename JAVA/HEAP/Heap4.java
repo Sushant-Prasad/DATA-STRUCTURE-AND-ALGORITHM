@@ -1,79 +1,162 @@
+/*
+===========================================================
+TITLE
+===========================================================
+Find K Closest Cars to the Origin (0,0)
+
+===========================================================
+PROBLEM STATEMENT
+===========================================================
+You are given coordinates of `n` cars on a 2D plane.
+Each car is represented by (x, y).
+
+Your task is to find the **K cars that are closest to the origin (0,0)**.
+
+Distance is calculated using Euclidean distance:
+    distance = √(x² + y²)
+
+NOTE:
+• Since square root is monotonic, we compare using **squared distance**
+  → x² + y² (avoids floating point computation)
+
+===========================================================
+INTUITION
+===========================================================
+To always get the closest car efficiently:
+• We need a data structure that can quickly give the minimum distance
+
+A **Min-Heap (PriorityQueue)** is perfect because:
+• The smallest element is always at the top
+• Insert and remove operations are efficient
+
+===========================================================
+APPROACH
+===========================================================
+1) Create a custom class `Points` that stores:
+   - x coordinate
+   - y coordinate
+   - squared distance from origin
+   - original index of the car
+
+2) Implement Comparable interface so that:
+   - PriorityQueue sorts points by increasing distance
+
+3) Insert all cars into a Min-Heap (PriorityQueue)
+
+4) Remove K elements from the heap
+   - These will be the K closest cars
+
+===========================================================
+EXAMPLE
+===========================================================
+Input:
+points = { {3,3}, {5,-1}, {-2,4} }
+k = 2
+
+Squared distances:
+Car 0 → 3² + 3² = 18
+Car 1 → 5² + (-1)² = 26
+Car 2 → (-2)² + 4² = 20
+
+Sorted by distance:
+C0 (18), C2 (20), C1 (26)
+
+Output:
+C0
+C2
+
+===========================================================
+TIME COMPLEXITY
+===========================================================
+• Insert n elements into PQ → O(n log n)
+• Remove k elements         → O(k log n)
+• Overall                   → O(n log n)
+
+===========================================================
+SPACE COMPLEXITY
+===========================================================
+O(n)
+• PriorityQueue stores all cars
+
+===========================================================
+SPECIAL NOTES FOR LOGIC
+===========================================================
+• Squared distance is used instead of actual distance
+• Comparable interface ensures automatic heap ordering
+• PriorityQueue in Java is a Min-Heap by default
+===========================================================
+*/
+
 package HEAP;
 
 import java.util.PriorityQueue;
 
-/**
- * Title: Find K Closest Cars to the Origin (0,0) / nearby cars
- *
- * Description:
- * Given the coordinates of cars in a 2D plane, we want to find the
- * K cars that are closest to the origin (0,0). The distance is measured
- * using Euclidean distance: sqrt(x^2 + y^2). Since sqrt is monotonic,
- * we can just compare squared distances (x^2 + y^2).
- *
- * Approach:
- * - Define a custom class Points with coordinates, distance^2, and index.
- * - Use a Min-Heap (PriorityQueue) based on distSq.
- * - Insert all cars into the heap.
- * - Remove K cars (these will be the closest).
- *
- * Time Complexity:
- *  - Insertion into PQ: O(n log n)  [n = number of cars]
- *  - Extracting K cars: O(k log n)
- *  - Overall: O(n log n)
- *
- * Space Complexity:
- *  - O(n) for the priority queue.
- */
 public class Heap4 {
 
-  // Custom class to represent a car's position
-  public static class Points implements Comparable<Points> {
-    int x;
-    int y;
-    int distSq; // squared distance from origin
-    int idx;    // original index of the car
+    /*
+     * Custom class to represent a car's position
+     * Implements Comparable so that PriorityQueue
+     * orders cars by increasing distance from origin
+     */
+    public static class Points implements Comparable<Points> {
 
-    Points(int x, int y, int distSq, int idx) {
-      this.x = x;
-      this.y = y;
-      this.distSq = distSq;
-      this.idx = idx;
+        int x;        // x-coordinate
+        int y;        // y-coordinate
+        int distSq;   // squared distance from origin
+        int idx;      // original index of the car
+
+        // Constructor
+        Points(int x, int y, int distSq, int idx) {
+            this.x = x;
+            this.y = y;
+            this.distSq = distSq;
+            this.idx = idx;
+        }
+
+        // Compare based on squared distance (Min-Heap behavior)
+        @Override
+        public int compareTo(Points p2) {
+            return this.distSq - p2.distSq;
+        }
     }
 
-    // Comparable to order points in ascending order of distance
-    @Override
-    public int compareTo(Points p2) {
-      return this.distSq - p2.distSq; // min-heap based on distance
+    /*
+     * Function to print indices of K closest cars
+     *
+     * @param arr  2D array containing car coordinates
+     * @param k    number of closest cars required
+     */
+    public static void nearbyCar(int[][] arr, int k) {
+
+        // Min-Heap based on squared distance
+        PriorityQueue<Points> pq = new PriorityQueue<>();
+
+        // Step 1: Insert all cars into the heap
+        for (int i = 0; i < arr.length; i++) {
+
+            int x = arr[i][0];
+            int y = arr[i][1];
+
+            // Calculate squared distance from origin
+            int distSq = x * x + y * y;
+
+            // Add car to heap
+            pq.add(new Points(x, y, distSq, i));
+        }
+
+        // Step 2: Extract K closest cars
+        for (int i = 0; i < k; i++) {
+            Points p = pq.remove();   // closest car
+            System.out.println("C" + p.idx);
+        }
     }
-  }
 
-  /**
-   * Find and print the K closest cars to the origin
-   * @param arr 2D array of car coordinates
-   * @param k   number of closest cars to find
-   */
-  public static void nearbyCar(int arr[][], int k) {
-    // Min-Heap based on squared distance
-    PriorityQueue<Points> pq = new PriorityQueue<>();
+    // Driver method
+    public static void main(String[] args) {
 
-    // Step 1: Insert all cars into PQ with their distance^2
-    for (int i = 0; i < arr.length; i++) {
-      int distSq = arr[i][0] * arr[i][0] + arr[i][1] * arr[i][1];
-      pq.add(new Points(arr[i][0], arr[i][1], distSq, i));
+        int[][] points = { {3, 3}, {5, -1}, {-2, 4} };
+        int k = 2;
+
+        nearbyCar(points, k);
     }
-
-    // Step 2: Extract k closest cars
-    for (int i = 0; i < k; i++) {
-      System.out.println("C" + pq.remove().idx);
-    }
-  }
-
-  // Driver function
-  public static void main(String[] args) {
-    int points[][] = { { 3, 3 }, { 5, -1 }, { -2, 4 } };
-    int k = 2;
-
-    nearbyCar(points, k);
-  }
 }
