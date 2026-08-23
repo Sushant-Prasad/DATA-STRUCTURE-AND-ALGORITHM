@@ -239,8 +239,6 @@ public class DP6 {
     // Initialize all values as "not calculated".
     Arrays.fill(dp, -1);
 
-    System.out.println(
-        "Total number of ways using Memoization: "
-            + climbStairsMemo(n, dp));
+    System.out.println("Total number of ways using Memoization: " + climbStairsMemo(n, dp));
   }
 }
