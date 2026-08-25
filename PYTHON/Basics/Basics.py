@@ -790,7 +790,7 @@ bank.pay(2000)
 # Output: Processing bank transfer of 2000
 
 
-"""
+
 The user of these classes only needs to know:
 
     pay(amount)
@@ -1188,8 +1188,6 @@ print("Circle area:", circle.area())
 print("Rectangle area:", rectangle.area())
 # Output: Rectangle area: 40
 
-
-"""
 The Shape class does not need to know the exact formula for every shape.
 
 It only defines:
@@ -1343,8 +1341,6 @@ part_time.display_name()
 print("Salary:", part_time.calculate_salary())
 # Output: Salary: 50000
 
-
-"""
 Here:
 
     Employee
