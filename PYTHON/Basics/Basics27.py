@@ -969,7 +969,6 @@ Example:
     class Dog(Animal):
         ...
 
-
 Abstraction is a design principle used to expose essential behavior while
 hiding implementation details.
 
