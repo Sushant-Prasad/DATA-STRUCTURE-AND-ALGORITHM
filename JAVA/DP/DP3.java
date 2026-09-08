@@ -35,6 +35,7 @@ DP can be implemented using:
     2. Tabulation   → Bottom-Up DP
 */
 
+import java.util.Arrays;
 
 public class DP3 {
 
@@ -418,7 +419,7 @@ public class DP3 {
 
         int[] dp = new int[n + 1];
 
-        java.util.Arrays.fill(dp, -1);
+        Arrays.fill(dp, -1);
 
 
         /*
