@@ -917,100 +917,100 @@ public class DP21 {
     int m = s2.length();
 
     /*
-     * prev stores the results of the previous DP row.
-     *
-     * curr stores the results of the current DP row.
-     *
-     * We need m + 1 positions because index 0 represents
-     * the case where the second string has zero characters.
+      prev stores the results of the previous DP row.
+     
+      curr stores the results of the current DP row.
+     
+      We need m + 1 positions because index 0 represents
+      the case where the second string has zero characters.
      */
     int prev[] = new int[m + 1];
     int curr[] = new int[m + 1];
 
     /*
-     * Initialize the previous row with 0.
-     *
-     * Java arrays are already initialized with 0, so this
-     * statement is not strictly necessary, but it makes
-     * the DP initialization explicit.
+      Initialize the previous row with 0.
+     
+      Java arrays are already initialized with 0, so this
+      statement is not strictly necessary, but it makes
+      the DP initialization explicit.
      */
     Arrays.fill(prev, 0);
 
     /*
-     * Process every character of s1.
-     *
-     * i represents the number of characters considered
-     * from s1.
+      Process every character of s1.
+     
+      i represents the number of characters considered
+      from s1.
      */
     for (int i = 1; i < n + 1; i++) {
 
       /*
-       * Process every character of s2.
-       *
-       * j represents the number of characters considered
-       * from s2.
+        Process every character of s2.
+       
+        j represents the number of characters considered
+        from s2.
        */
       for (int j = 1; j < m + 1; j++) {
 
         /*
-         * Compare the current characters.
-         *
-         * i - 1 and j - 1 are used because Java string
-         * indexing starts from 0 while DP indexing starts
-         * from 1.
+          Compare the current characters.
+         
+          i - 1 and j - 1 are used because Java string
+          indexing starts from 0 while DP indexing starts
+          from 1.
          */
         if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
 
           /*
-           * The current characters are equal.
-           *
-           * Include this common character in the LCS.
-           *
-           * prev[j - 1] represents the diagonal state:
-           *
-           * dp[i - 1][j - 1]
-           *
-           * Therefore:
-           *
-           * curr[j] = prev[j - 1] + 1
+            The current characters are equal.
+           
+            Include this common character in the LCS.
+           
+            prev[j - 1] represents the diagonal state:
+           
+            dp[i - 1][j - 1]
+           
+            Therefore:
+           
+            curr[j] = prev[j - 1] + 1
            */
           curr[j] = prev[j - 1] + 1;
 
         } else {
 
           /*
-           * The current characters are different.
-           *
-           * Two possibilities exist:
-           *
-           * 1. Ignore the current character of s1:
-           *
-           *    prev[j]
-           *
-           *    This represents dp[i - 1][j].
-           *
-           *
-           * 2. Ignore the current character of s2:
-           *
-           *    curr[j - 1]
-           *
-           *    This represents dp[i][j - 1].
-           *
-           *
-           * Take the maximum of both possibilities.
+            The current characters are different.
+           
+            Two possibilities exist:
+           
+            1. Ignore the current character of s1:
+           
+               prev[j]
+           
+               This represents dp[i - 1][j].
+           
+           
+            2. Ignore the current character of s2:
+           
+               curr[j - 1]
+           
+               This represents dp[i][j - 1].
+           
+           
+            Take the maximum of both possibilities.
            */
           curr[j] = Math.max(prev[j], curr[j - 1]);
         }
       }
 
       /*
-       * The current row has now been completely calculated.
-       *
-       * Copy the current row into prev so that it becomes
-       * the previous row for the next iteration of i.
-       *
-       * clone() creates a separate array, so future changes
-       * to curr do not modify prev.
+        The current row has now been completely calculated.
+       
+        Copy the current row into prev so that it becomes
+        the previous row for the next iteration of i.
+       
+        clone() creates a separate array, so future changes
+        to curr do not modify prev.
        */
       prev = curr.clone();
     }
