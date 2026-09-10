@@ -1016,12 +1016,12 @@ public class DP21 {
     }
 
     /*
-     * After processing all characters:
-     *
-     * prev[m] represents dp[n][m].
-     *
-     * Therefore, it contains the LCS length of the complete
-     * strings s1 and s2.
+      After processing all characters:
+     
+      prev[m] represents dp[n][m].
+     
+      Therefore, it contains the LCS length of the complete
+      strings s1 and s2.
      */
     return prev[m];
   }
@@ -1035,10 +1035,10 @@ public class DP21 {
     String s2 = "abedg";
 
     /*
-     * Calculate the LCS length of the complete strings.
-     *
-     * The method uses only two DP rows instead of storing
-     * the complete 2D DP table.
+      Calculate the LCS length of the complete strings.
+     
+      The method uses only two DP rows instead of storing
+      the complete 2D DP table.
      */
     System.out.println(lcsTab(s1, s2));
   }
