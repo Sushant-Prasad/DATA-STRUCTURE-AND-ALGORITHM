@@ -889,32 +889,32 @@ public class DP20 {
     int m = s2.length();
 
     /*
-     * Create the DP table.
-     *
-     * There are n + 1 rows and m + 1 columns because row 0
-     * and column 0 represent the empty-string cases.
+      Create the DP table.
+     
+      There are n + 1 rows and m + 1 columns because row 0
+      and column 0 represent the empty-string cases.
      */
     int dp[][] = new int[n + 1][m + 1];
 
     /*
-     * Base case:
-     *
-     * dp[i][0] represents the LCS between the first i
-     * characters of s1 and an empty s2.
-     *
-     * Therefore, the LCS length is 0.
+      Base case:
+     
+      dp[i][0] represents the LCS between the first i
+      characters of s1 and an empty s2.
+     
+      Therefore, the LCS length is 0.
      */
     for (int i = 0; i < n + 1; i++) {
       dp[i][0] = 0;
     }
 
     /*
-     * Base case:
-     *
-     * dp[0][j] represents the LCS between an empty s1
-     * and the first j characters of s2.
-     *
-     * Therefore, the LCS length is 0.
+      Base case:
+     
+      dp[0][j] represents the LCS between an empty s1
+      and the first j characters of s2.
+     
+      Therefore, the LCS length is 0.
      */
     for (int i = 0; i < m + 1; i++) {
       dp[0][i] = 0;
