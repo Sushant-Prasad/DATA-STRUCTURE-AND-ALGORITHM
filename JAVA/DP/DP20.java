@@ -921,54 +921,54 @@ public class DP20 {
     }
 
     /*
-     * Fill the DP table from top to bottom and from left to
-     * right.
-     *
-     * i represents the number of characters considered from s1.
-     *
-     * j represents the number of characters considered from s2.
+      Fill the DP table from top to bottom and from left to
+      right.
+     
+      i represents the number of characters considered from s1.
+     
+      j represents the number of characters considered from s2.
      */
     for (int i = 1; i < n + 1; i++) {
 
       for (int j = 1; j < m + 1; j++) {
 
         /*
-         * Java String indexes start from 0.
-         *
-         * Therefore:
-         *
-         * i -> DP position
-         * i - 1 -> actual String index
-         *
-         * Similarly:
-         *
-         * j -> DP position
-         * j - 1 -> actual String index
+          Java String indexes start from 0.
+         
+          Therefore:
+         
+          i -> DP position
+          i - 1 -> actual String index
+         
+          Similarly:
+         
+          j -> DP position
+          j - 1 -> actual String index
          */
         if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
 
           /*
-           * The current characters are equal.
-           *
-           * Include this common character in the LCS and move
-           * diagonally to the previous state.
+            The current characters are equal.
+           
+            Include this common character in the LCS and move
+            diagonally to the previous state.
            */
           dp[i][j] = dp[i - 1][j - 1] + 1;
 
         } else {
 
           /*
-           * The current characters are different.
-           *
-           * We have two choices:
-           *
-           * 1. Ignore the current character of s1:
-           *       dp[i - 1][j]
-           *
-           * 2. Ignore the current character of s2:
-           *       dp[i][j - 1]
-           *
-           * Take the maximum of the two possibilities.
+            The current characters are different.
+           
+            We have two choices:
+           
+            1. Ignore the current character of s1:
+                  dp[i - 1][j]
+           
+            2. Ignore the current character of s2:
+                  dp[i][j - 1]
+           
+            Take the maximum of the two possibilities.
            */
           dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
         }
@@ -976,8 +976,8 @@ public class DP20 {
     }
 
     /*
-     * dp[n][m] represents the LCS length between the complete
-     * strings s1 and s2.
+      dp[n][m] represents the LCS length between the complete
+      strings s1 and s2.
      */
     return dp[n][m];
   }
@@ -991,10 +991,10 @@ public class DP20 {
     String s2 = "abedg";
 
     /*
-     * Calculate the LCS length of the complete strings.
-     *
-     * The method builds the entire DP table and returns the
-     * value stored in dp[n][m].
+      Calculate the LCS length of the complete strings.
+     
+      The method builds the entire DP table and returns the
+      value stored in dp[n][m].
      */
     System.out.println(lcsTab(s1, s2));
   }
