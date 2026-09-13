@@ -914,20 +914,20 @@ public class DP19 {
     if (m == 0 || n == 0) return 0;
 
     /*
-     * Check whether the current state has already been calculated.
-     *
-     * A value other than -1 means that the answer is already
-     * stored in dp[n][m], so no further recursive calculation
-     * is required for this state.
+      Check whether the current state has already been calculated.
+     
+      A value other than -1 means that the answer is already
+      stored in dp[n][m], so no further recursive calculation
+      is required for this state.
      */
     if (dp[n][m] != -1) return dp[n][m];
 
     /*
-     * If the current characters are equal, include the matching
-     * character in the LCS.
-     *
-     * Both n and m are reduced because both current characters
-     * have been included.
+      If the current characters are equal, include the matching
+      character in the LCS.
+     
+      Both n and m are reduced because both current characters
+      have been included.
      */
     if (s1.charAt(n - 1) == s2.charAt(m - 1)) {
 
