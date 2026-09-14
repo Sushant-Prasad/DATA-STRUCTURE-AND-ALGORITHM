@@ -932,11 +932,11 @@ public class DP19 {
     if (s1.charAt(n - 1) == s2.charAt(m - 1)) {
 
       /*
-       * Calculate the LCS of the remaining characters and add 1
-       * for the current matching character.
-       *
-       * Store the result in dp[n][m] so that the same state can
-       * be reused without recalculating it.
+        Calculate the LCS of the remaining characters and add 1
+        for the current matching character.
+       
+        Store the result in dp[n][m] so that the same state can
+        be reused without recalculating it.
        */
       dp[n][m] = lcsMemo(s1, s2, n - 1, m - 1, dp) + 1;
 
@@ -946,13 +946,13 @@ public class DP19 {
     } else {
 
       /*
-       * The current characters are different, so we consider
-       * two possibilities:
-       *
-       * 1. Ignore the last character of s2.
-       * 2. Ignore the last character of s1.
-       *
-       * The larger result gives the longest common subsequence.
+        The current characters are different, so we consider
+        two possibilities:
+       
+        1. Ignore the last character of s2.
+        2. Ignore the last character of s1.
+       
+        The larger result gives the longest common subsequence.
        */
       dp[n][m] = Math.max(
           lcsMemo(s1, s2, n, m - 1, dp),
@@ -973,18 +973,18 @@ public class DP19 {
     String s2 = "abedg";
 
     /*
-     * Create the memoization table.
-     *
-     * One extra row and one extra column are required to
-     * represent states where n == 0 or m == 0.
+      Create the memoization table.
+     
+      One extra row and one extra column are required to
+      represent states where n == 0 or m == 0.
      */
     int dp[][] = new int[s1.length() + 1][s2.length() + 1];
 
     /*
-     * Java initializes integer arrays with 0.
-     *
-     * Since 0 is a valid LCS result, we use -1 to represent
-     * a state that has not been calculated yet.
+      Java initializes integer arrays with 0.
+     
+      Since 0 is a valid LCS result, we use -1 to represent
+      a state that has not been calculated yet.
      */
     for (int i = 0; i < dp.length; i++) {
 
