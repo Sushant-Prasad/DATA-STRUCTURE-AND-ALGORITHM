@@ -996,11 +996,11 @@ public class DP19 {
     }
 
     /*
-     * Start the recursive memoization process using the complete
-     * lengths of both strings.
-     *
-     * s1.length() represents n.
-     * s2.length() represents m.
+      Start the recursive memoization process using the complete
+      lengths of both strings.
+     
+      s1.length() represents n.
+      s2.length() represents m.
      */
     System.out.println(lcsMemo(s1, s2, s1.length(), s2.length(), dp));
   }
