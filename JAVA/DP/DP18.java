@@ -681,26 +681,26 @@ public class DP18 {
     if (m == 0 || n == 0) return 0;
 
     /*
-     * If the last characters of the two currently considered
-     * strings are equal, include that character in the LCS.
-     *
-     * n - 1 and m - 1 remove the matching characters from
-     * further consideration.
+      If the last characters of the two currently considered
+      strings are equal, include that character in the LCS.
+     
+      n - 1 and m - 1 remove the matching characters from
+      further consideration.
      */
     if (s1.charAt(n - 1) == s2.charAt(m - 1)) {
       return lcs(s1, s2, n - 1, m - 1) + 1;
     } else {
 
       /*
-       * If the last characters are different, we cannot include
-       * both of them together.
-       *
-       * We try both possibilities:
-       *
-       * 1. Ignore the last character of s2.
-       * 2. Ignore the last character of s1.
-       *
-       * Math.max() selects the longer common subsequence.
+        If the last characters are different, we cannot include
+        both of them together.
+       
+        We try both possibilities:
+       
+        1. Ignore the last character of s2.
+        2. Ignore the last character of s1.
+       
+        Math.max() selects the longer common subsequence.
        */
       return Math.max(lcs(s1, s2, n, m - 1), lcs(s1, s2, n - 1, m));
     }
@@ -715,11 +715,11 @@ public class DP18 {
     String s2 = "abedg";
 
     /*
-     * Initially, n and m contain the complete lengths of
-     * the two strings.
-     *
-     * The recursive function gradually decreases n and m
-     * until one of them becomes 0.
+      Initially, n and m contain the complete lengths of
+      the two strings.
+     
+      The recursive function gradually decreases n and m
+      until one of them becomes 0.
      */
     System.out.println(lcs(s1, s2, s1.length(), s2.length()));
   }
