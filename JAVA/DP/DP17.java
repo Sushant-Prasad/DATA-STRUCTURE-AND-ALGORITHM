@@ -837,102 +837,106 @@ SPECIAL NOTES
        O(L)
 
 */
-
+/* */
 
 public class DP17 {
 
-  public static int rodCutting(int length[], int price[], int L) {
+    public static int rodCutting(int length[], int price[], int L) {
 
-    // Number of available rod piece lengths.
-    // DP uses i = 1 to n, while Java arrays use index 0 to n - 1.
-    int n = length.length;
+        // Number of available rod piece lengths.
+        // DP uses i = 1 to n, while Java arrays use index 0 to n - 1.
+        int n = length.length;
 
-    // curr[j] stores the maximum price for rod length j
-    // using the current piece and previously processed pieces.
-    int curr[] = new int[L + 1];
+        // curr[j] stores the maximum price for rod length j
+        // using the current piece and previously processed pieces.
+        int curr[] = new int[L + 1];
 
-    // prev[j] stores the maximum price for rod length j
-    // using only the previously processed pieces.
-    int prev[] = new int[L + 1];
+        // prev[j] stores the maximum price for rod length j
+        // using only the previously processed pieces.
+        int prev[] = new int[L + 1];
 
-    // Base case:
-    // With zero available pieces, maximum obtainable price is 0
-    // for every possible rod length.
-    Arrays.fill(prev, 0);
+        /*
+         * Base case:
+         * With zero available pieces, maximum obtainable price is 0
+         * for every possible rod length.
+         */
+        Arrays.fill(prev, 0);
 
-    // Process each available rod piece.
-    // i represents the number of pieces considered so far.
-    for (int i = 1; i < n + 1; i++) {
+        // Process each available rod piece.
+        // i represents the number of pieces considered so far.
+        for (int i = 1; i < n + 1; i++) {
 
-      // curr[] is reused for every row, so reset it before
-      // calculating the new current DP row.
-      Arrays.fill(curr, 0);
+            // curr[] is reused for every row, so reset it before
+            // calculating the new current DP row.
+            Arrays.fill(curr, 0);
 
-      // j represents the current rod length / capacity.
-      for (int j = 1; j < L + 1; j++) {
+            // j represents the current rod length / capacity.
+            for (int j = 1; j < L + 1; j++) {
 
-        // Java arrays are 0-indexed, while DP rows start from 1.
-        // Therefore, the current piece is at index i - 1.
-        if (length[i - 1] <= j) {
+                // Java arrays are 0-indexed, while DP rows start from 1.
+                // Therefore, the current piece is at index i - 1.
+                if (length[i - 1] <= j) {
 
-          // INCLUDE:
-          // Take the current rod piece.
-          //
-          // Because Rod Cutting is Unbounded Knapsack,
-          // the same piece can be used again.
-          //
-          // Therefore, use curr[j - length[i - 1]]
-          // from the SAME row.
-          int include = price[i - 1] + curr[j - length[i - 1]];
+                    /*
+                     * INCLUDE:
+                     * Take the current rod piece.
+                     * 
+                     * Because Rod Cutting is Unbounded Knapsack,
+                     * the same piece can be used again.
+                     * 
+                     * Therefore, use curr[j - length[i - 1]]
+                     * from the SAME row.
+                     */
+                    int include = price[i - 1] + curr[j - length[i - 1]];
 
-          // EXCLUDE:
-          // Do not use the current rod piece.
-          // Use the result from the previous row.
-          int exclude = prev[j];
+                    // EXCLUDE:
+                    // Do not use the current rod piece.
+                    // Use the result from the previous row.
+                    int exclude = prev[j];
 
-          // Choose the option that gives maximum price.
-          curr[j] = Math.max(include, exclude);
+                    // Choose the option that gives maximum price.
+                    curr[j] = Math.max(include, exclude);
 
-        } else {
+                } else {
 
-          // Current piece is longer than the available rod length,
-          // so it cannot be included.
-          //
-          // Therefore, carry forward the previous-row answer.
-          curr[j] = prev[j];
+                    // Current piece is longer than the available rod length,
+                    // so it cannot be included.
+                    //
+                    // Therefore, carry forward the previous-row answer.
+                    curr[j] = prev[j];
+                }
+            }
+
+            // The current row is now completely calculated.
+            // Make an independent copy so that prev[] represents
+            // the completed current row in the next iteration.
+            //
+            // clone() is important because:
+            // prev = curr;
+            // would make both variables refer to the same array.
+            prev = curr.clone();
         }
-      }
 
-      // The current row is now completely calculated.
-      // Make an independent copy so that prev[] represents
-      // the completed current row in the next iteration.
-      //
-      // clone() is important because:
-      // prev = curr;
-      // would make both variables refer to the same array.
-      prev = curr.clone();
+        // Equivalent to dp[n][L] in the original 2D DP solution.
+        // After processing all pieces, prev[] contains the final DP row.
+        // Therefore, prev[L] contains the maximum price for the
+        // complete rod length L.
+        return prev[L];
     }
 
-    // Equivalent to dp[n][L] in the original 2D DP solution.
-    // After processing all pieces, prev[] contains the final DP row.
-    // Therefore, prev[L] contains the maximum price for the
-    // complete rod length L.
-    return prev[L];
-  }
+    public static void main(String[] args) {
 
-  public static void main(String[] args) {
+        // Available rod piece lengths.
+        int length[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-    // Available rod piece lengths.
-    int length[] = {1, 2, 3, 4, 5, 6, 7, 8};
+        // Price corresponding to each available piece length.
+        int price[] = { 1, 5, 8, 9, 10, 17, 17, 20 };
 
-    // Price corresponding to each available piece length.
-    int price[] = {1, 5, 8, 9, 10, 17, 17, 20};
+        // Total length of the original rod.
+        int rodlength = 8;
 
-    // Total length of the original rod.
-    int rodlength = 8;
-
-    // Call the Rod Cutting function and print the maximum
-    // obtainable price.
-    System.out.println("Maximum obtainable price = " + rodCutting(length, price, rodlength));
-  }
+        // Call the Rod Cutting function and print the maximum
+        // obtainable price.
+        System.out.println("Maximum obtainable price = " + rodCutting(length, price, rodlength));
+    }
 }
