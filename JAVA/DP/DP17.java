@@ -888,10 +888,11 @@ public class DP17 {
                      * from the SAME row.
                      */
                     int include = price[i - 1] + curr[j - length[i - 1]];
-
-                    // EXCLUDE:
-                    // Do not use the current rod piece.
-                    // Use the result from the previous row.
+                    /*
+                     * EXCLUDE:
+                     * Do not use the current rod piece.
+                     * Use the result from the previous row.
+                     */
                     int exclude = prev[j];
 
                     // Choose the option that gives maximum price.
