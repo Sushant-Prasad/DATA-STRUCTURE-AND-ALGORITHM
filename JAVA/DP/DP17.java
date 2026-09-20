@@ -899,11 +899,12 @@ public class DP17 {
                     curr[j] = Math.max(include, exclude);
 
                 } else {
-
-                    // Current piece is longer than the available rod length,
-                    // so it cannot be included.
-                    //
-                    // Therefore, carry forward the previous-row answer.
+                    /*
+                     * Current piece is longer than the available rod length,
+                     * so it cannot be included.
+                     * 
+                     * Therefore, carry forward the previous-row answer.
+                     */
                     curr[j] = prev[j];
                 }
             }
