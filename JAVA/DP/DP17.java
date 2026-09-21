@@ -908,14 +908,15 @@ public class DP17 {
                     curr[j] = prev[j];
                 }
             }
-
-            // The current row is now completely calculated.
-            // Make an independent copy so that prev[] represents
-            // the completed current row in the next iteration.
-            //
-            // clone() is important because:
-            // prev = curr;
-            // would make both variables refer to the same array.
+            /*
+             *  The current row is now completely calculated.
+             *  Make an independent copy so that prev[] represents
+             *  the completed current row in the next iteration.
+             * 
+             *  clone() is important because:
+             *  prev = curr;
+             *  would make both variables refer to the same array.
+             */
             prev = curr.clone();
         }
 
