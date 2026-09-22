@@ -909,21 +909,22 @@ public class DP17 {
                 }
             }
             /*
-             *  The current row is now completely calculated.
-             *  Make an independent copy so that prev[] represents
-             *  the completed current row in the next iteration.
+             * The current row is now completely calculated.
+             * Make an independent copy so that prev[] represents
+             * the completed current row in the next iteration.
              * 
-             *  clone() is important because:
-             *  prev = curr;
-             *  would make both variables refer to the same array.
+             * clone() is important because:
+             * prev = curr;
+             * would make both variables refer to the same array.
              */
             prev = curr.clone();
         }
-
-        // Equivalent to dp[n][L] in the original 2D DP solution.
-        // After processing all pieces, prev[] contains the final DP row.
-        // Therefore, prev[L] contains the maximum price for the
-        // complete rod length L.
+        /*
+         *  Equivalent to dp[n][L] in the original 2D DP solution.
+         *  After processing all pieces, prev[] contains the final DP row.
+         *  Therefore, prev[L] contains the maximum price for the
+         *  complete rod length L.
+         */
         return prev[L];
     }
 
