@@ -837,7 +837,6 @@ SPECIAL NOTES
        O(L)
 
 */
-/* */
 
 public class DP17 {
 
@@ -856,9 +855,9 @@ public class DP17 {
         int prev[] = new int[L + 1];
 
         /*
-         * Base case:
-         * With zero available pieces, maximum obtainable price is 0
-         * for every possible rod length.
+          Base case:
+          With zero available pieces, maximum obtainable price is 0
+          for every possible rod length.
          */
         Arrays.fill(prev, 0);
 
@@ -878,19 +877,19 @@ public class DP17 {
                 if (length[i - 1] <= j) {
 
                     /*
-                     * INCLUDE:
-                     * Take the current rod piece.
-                     * 
-                     * Because Rod Cutting is Unbounded Knapsack,
-                     * the same piece can be used again.
-                     * 
-                     * Therefore, use curr[j - length[i - 1]]
-                     * from the SAME row.
+                      INCLUDE:
+                      Take the current rod piece.
+                      
+                      Because Rod Cutting is Unbounded Knapsack,
+                      the same piece can be used again.
+                      
+                      Therefore, use curr[j - length[i - 1]]
+                      from the SAME row.
                      */
                     int include = price[i - 1] + curr[j - length[i - 1]];
                     /*
-                     * EXCLUDE:
-                     * Do not use the current rod piece.
+                      EXCLUDE:
+                      Do not use the current rod piece.
                      * Use the result from the previous row.
                      */
                     int exclude = prev[j];
@@ -900,30 +899,30 @@ public class DP17 {
 
                 } else {
                     /*
-                     * Current piece is longer than the available rod length,
-                     * so it cannot be included.
-                     * 
-                     * Therefore, carry forward the previous-row answer.
+                      Current piece is longer than the available rod length,
+                      so it cannot be included.
+                      
+                      Therefore, carry forward the previous-row answer.
                      */
                     curr[j] = prev[j];
                 }
             }
             /*
-             * The current row is now completely calculated.
-             * Make an independent copy so that prev[] represents
-             * the completed current row in the next iteration.
-             * 
-             * clone() is important because:
-             * prev = curr;
-             * would make both variables refer to the same array.
+              The current row is now completely calculated.
+              Make an independent copy so that prev[] represents
+              the completed current row in the next iteration.
+              
+              clone() is important because:
+              prev = curr;
+              would make both variables refer to the same array.
              */
             prev = curr.clone();
         }
         /*
-         *  Equivalent to dp[n][L] in the original 2D DP solution.
-         *  After processing all pieces, prev[] contains the final DP row.
-         *  Therefore, prev[L] contains the maximum price for the
-         *  complete rod length L.
+           Equivalent to dp[n][L] in the original 2D DP solution.
+           After processing all pieces, prev[] contains the final DP row.
+           Therefore, prev[L] contains the maximum price for the
+           complete rod length L.
          */
         return prev[L];
     }
