@@ -879,77 +879,80 @@ SPECIAL NOTES
 
 public class DP16 {
 
-  public static int rodCutting(int length[], int price[], int L) {
+    public static int rodCutting(int length[], int price[], int L) {
 
-    // Number of available rod piece lengths.
-    int n = length.length;
+        // Number of available rod piece lengths.
+        int n = length.length;
 
-    // Create the 2D DP table.
-    // Rows represent available piece lengths.
-    // Columns represent the current rod length.
-    int dp[][] = new int[n + 1][L + 1];
+        /*
+         * Create the 2D DP table.
+         * Rows represent available piece lengths.
+         *
+         *  Columns represent the current rod length.
+         */
+        int dp[][] = new int[n + 1][L + 1];
 
-    // Initialize row 0.
-    // With zero available piece lengths, maximum price is 0.
-    for(int i = 0; i < n + 1; i++) {
-      dp[0][i] = 0;
-    }
-
-    // Initialize column 0.
-    // A rod of length 0 gives maximum price 0.
-    for(int i = 0; i < n + 1; i++) {
-      dp[i][0] = 0;
-    }
-
-    // Process every available piece length.
-    // i represents the number of piece lengths being considered.
-    for(int i = 1; i < n + 1; i++) {
-
-      // Process every possible rod length from 1 through L.
-      for(int j = 1; j < L + 1; j++) {
-
-        // Check whether the current piece length can fit
-        // inside the current rod length.
-        if(length[i - 1] <= j) {
-
-          // INCLUDE the current piece.
-          // Same row i is used because the piece can be
-          // selected multiple times.
-          int include = price[i - 1] + dp[i][j - length[i - 1]];
-
-          // EXCLUDE the current piece.
-          // Move to the previous row because this piece
-          // is not considered.
-          int exclude = dp[i - 1][j];
-
-          // Store the better choice.
-          dp[i][j] = Math.max(include, exclude);
-
-        } else {
-
-          // Current piece cannot fit, so exclude it.
-          dp[i][j] = dp[i - 1][j];
+        // Initialize row 0.
+        // With zero available piece lengths, maximum price is 0.
+        for (int i = 0; i < n + 1; i++) {
+            dp[0][i] = 0;
         }
-      }
+
+        // Initialize column 0.
+        // A rod of length 0 gives maximum price 0.
+        for (int i = 0; i < n + 1; i++) {
+            dp[i][0] = 0;
+        }
+
+        // Process every available piece length.
+        // i represents the number of piece lengths being considered.
+        for (int i = 1; i < n + 1; i++) {
+
+            // Process every possible rod length from 1 through L.
+            for (int j = 1; j < L + 1; j++) {
+
+                // Check whether the current piece length can fit
+                // inside the current rod length.
+                if (length[i - 1] <= j) {
+
+                    // INCLUDE the current piece.
+                    // Same row i is used because the piece can be
+                    // selected multiple times.
+                    int include = price[i - 1] + dp[i][j - length[i - 1]];
+
+                    // EXCLUDE the current piece.
+                    // Move to the previous row because this piece
+                    // is not considered.
+                    int exclude = dp[i - 1][j];
+
+                    // Store the better choice.
+                    dp[i][j] = Math.max(include, exclude);
+
+                } else {
+
+                    // Current piece cannot fit, so exclude it.
+                    dp[i][j] = dp[i - 1][j];
+                }
+            }
+        }
+
+        // dp[n][L] represents the maximum price obtainable
+        // using all available piece lengths for rod length L.
+        return dp[n][L];
     }
 
-    // dp[n][L] represents the maximum price obtainable
-    // using all available piece lengths for rod length L.
-    return dp[n][L];
-  }
+    public static void main(String[] args) {
 
-  public static void main(String[] args) {
+        // Available rod piece lengths.
+        int length[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-    // Available rod piece lengths.
-    int length[] = {1, 2, 3, 4, 5, 6, 7, 8};
+        // Price corresponding to each available piece length.
+        int price[] = { 1, 5, 8, 9, 10, 17, 17, 20 };
 
-    // Price corresponding to each available piece length.
-    int price[] = {1, 5, 8, 9, 10, 17, 17, 20};
+        // Total length of the original rod.
+        int rodlength = 8;
 
-    // Total length of the original rod.
-    int rodlength = 8;
-
-    // Calculate and print the maximum obtainable price.
-    System.out.println("Maximum obtainable price = "+rodCutting(length, price, rodlength));
-  }
+        // Calculate and print the maximum obtainable price.
+        System.out.println("Maximum obtainable price = " + rodCutting(length, price, rodlength));
+    }
 }
