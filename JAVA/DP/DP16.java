@@ -887,8 +887,7 @@ public class DP16 {
         /*
          * Create the 2D DP table.
          * Rows represent available piece lengths.
-         *
-         *  Columns represent the current rod length.
+         * Columns represent the current rod length.
          */
         int dp[][] = new int[n + 1][L + 1];
 
@@ -914,10 +913,11 @@ public class DP16 {
                 // Check whether the current piece length can fit
                 // inside the current rod length.
                 if (length[i - 1] <= j) {
-
-                    // INCLUDE the current piece.
-                    // Same row i is used because the piece can be
-                    // selected multiple times.
+                    /*
+                     *  INCLUDE the current piece.
+                     *  Same row i is used because the piece can be
+                     *  selected multiple times.
+                     */
                     int include = price[i - 1] + dp[i][j - length[i - 1]];
 
                     // EXCLUDE the current piece.
