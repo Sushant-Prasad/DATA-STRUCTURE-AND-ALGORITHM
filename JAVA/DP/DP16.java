@@ -914,15 +914,16 @@ public class DP16 {
                 // inside the current rod length.
                 if (length[i - 1] <= j) {
                     /*
-                     *  INCLUDE the current piece.
-                     *  Same row i is used because the piece can be
-                     *  selected multiple times.
+                     * INCLUDE the current piece.
+                     * Same row i is used because the piece can be
+                     * selected multiple times.
                      */
                     int include = price[i - 1] + dp[i][j - length[i - 1]];
-
-                    // EXCLUDE the current piece.
-                    // Move to the previous row because this piece
-                    // is not considered.
+                    /*
+                       EXCLUDE the current piece.
+                       Move to the previous row because this piece
+                       is not considered.
+                     */
                     int exclude = dp[i - 1][j];
 
                     // Store the better choice.
