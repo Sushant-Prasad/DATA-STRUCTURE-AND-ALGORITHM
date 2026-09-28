@@ -976,84 +976,85 @@ SPECIAL NOTES
 
 public class DP15 {
 
-  public static int unboundedKnapsackOpt(int val[], int wt[], int W) {
+    public static int unboundedKnapsackOpt(int val[], int wt[], int W) {
 
-    // Number of available items.
-    int n = val.length;
+        // Number of available items.
+        int n = val.length;
 
-    // Current row of the optimized DP table.
-    int curr[] = new int[W + 1];
+        // Current row of the optimized DP table.
+        int curr[] = new int[W + 1];
 
-    // Previous row of the optimized DP table.
-    int prev[] = new int[W + 1];
+        // Previous row of the optimized DP table.
+        int prev[] = new int[W + 1];
 
-    // With zero items, maximum profit for every capacity is 0.
-    Arrays.fill(prev, 0);
+        // With zero items, maximum profit for every capacity is 0.
+        Arrays.fill(prev, 0);
+        /*
+          Process every item.
+          i represents the number of items currently being considered.
+          i starts from 1 because row 0 is the base case.
+         */
+        for (int i = 1; i < n + 1; i++) {
 
-    // Process every item.
-    // i represents the number of items currently being considered.
-    // i starts from 1 because row 0 is the base case.
-    for(int i = 1; i < n + 1; i++) {
+            // Reset curr[] because the same array is reused for every item.
+            Arrays.fill(curr, 0);
 
-      // Reset curr[] because the same array is reused for every item.
-      Arrays.fill(curr, 0);
+            // Process every possible capacity from 1 through W.
+            for (int j = 1; j < W + 1; j++) {
 
-      // Process every possible capacity from 1 through W.
-      for(int j = 1; j < W + 1; j++) {
+                // Get the current item's value.
+                // i - 1 converts the 1-based DP item index into
+                // the 0-based Java array index.
+                int v = val[i - 1];
 
-        // Get the current item's value.
-        // i - 1 converts the 1-based DP item index into
-        // the 0-based Java array index.
-        int v = val[i - 1];
+                // Get the current item's weight.
+                int w = wt[i - 1];
 
-        // Get the current item's weight.
-        int w = wt[i - 1];
+                // Check whether the current item can fit in capacity j.
+                if (w <= j) {
 
-        // Check whether the current item can fit in capacity j.
-        if(w <= j) {
+                    // Include the current item.
+                    // curr[j - w] is used instead of prev[j - w]
+                    // because the current item can be selected again.
+                    int profit1 = v + curr[j - w];
 
-          // Include the current item.
-          // curr[j - w] is used instead of prev[j - w]
-          // because the current item can be selected again.
-          int profit1 = v + curr[j - w];
+                    // Exclude the current item.
+                    // Move to the previous row because the current
+                    // item is not used.
+                    int profit2 = prev[j];
 
-          // Exclude the current item.
-          // Move to the previous row because the current
-          // item is not used.
-          int profit2 = prev[j];
+                    // Store the maximum profit between include and exclude.
+                    curr[j] = Math.max(profit1, profit2);
 
-          // Store the maximum profit between include and exclude.
-          curr[j] = Math.max(profit1, profit2);
+                } else {
 
-        } else {
+                    // Current item cannot fit, so exclude it.
+                    curr[j] = prev[j];
+                }
+            }
 
-          // Current item cannot fit, so exclude it.
-          curr[j] = prev[j];
+            // The complete current row is now calculated.
+            // Copy it into prev for processing the next item.
+            prev = curr.clone();
         }
-      }
 
-      // The complete current row is now calculated.
-      // Copy it into prev for processing the next item.
-      prev = curr.clone();
+        // After all items are processed, prev represents the final row.
+        // prev[W] is equivalent to dp[n][W] in the original 2D solution.
+        return prev[W];
     }
 
-    // After all items are processed, prev represents the final row.
-    // prev[W] is equivalent to dp[n][W] in the original 2D solution.
-    return prev[W];
-  }
+    public static void main(String[] args) {
 
-  public static void main(String[] args) {
+        // Values/profits of the five items.
+        int val[] = { 15, 14, 10, 45, 30 };
 
-    // Values/profits of the five items.
-    int val[] = {15, 14, 10, 45, 30};
+        // Weights of the five items.
+        int wt[] = { 2, 5, 1, 3, 4 };
 
-    // Weights of the five items.
-    int wt[] = {2, 5, 1, 3, 4};
+        // Maximum weight the knapsack can hold.
+        int W = 7;
 
-    // Maximum weight the knapsack can hold.
-    int W = 7;
-
-    // Calculate and print the maximum possible profit.
-    System.out.println("Maximum Profit = " + unboundedKnapsackOpt(val, wt, W));
-  }
+        // Calculate and print the maximum possible profit.
+        System.out.println("Maximum Profit = " + unboundedKnapsackOpt(val, wt, W));
+    }
 }
