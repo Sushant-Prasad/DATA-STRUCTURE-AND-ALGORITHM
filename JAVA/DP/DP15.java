@@ -990,9 +990,9 @@ public class DP15 {
         // With zero items, maximum profit for every capacity is 0.
         Arrays.fill(prev, 0);
         /*
-          Process every item.
-          i represents the number of items currently being considered.
-          i starts from 1 because row 0 is the base case.
+         * Process every item.
+         * i represents the number of items currently being considered.
+         * i starts from 1 because row 0 is the base case.
          */
         for (int i = 1; i < n + 1; i++) {
 
@@ -1001,10 +1001,11 @@ public class DP15 {
 
             // Process every possible capacity from 1 through W.
             for (int j = 1; j < W + 1; j++) {
-
-                // Get the current item's value.
-                // i - 1 converts the 1-based DP item index into
-                // the 0-based Java array index.
+                /*
+                 *  Get the current item's value.
+                 *  i - 1 converts the 1-based DP item index into
+                 *  the 0-based Java array index.
+                 */
                 int v = val[i - 1];
 
                 // Get the current item's weight.
