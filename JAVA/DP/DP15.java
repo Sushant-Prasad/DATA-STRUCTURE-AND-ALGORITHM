@@ -1002,9 +1002,9 @@ public class DP15 {
             // Process every possible capacity from 1 through W.
             for (int j = 1; j < W + 1; j++) {
                 /*
-                 *  Get the current item's value.
-                 *  i - 1 converts the 1-based DP item index into
-                 *  the 0-based Java array index.
+                 * Get the current item's value.
+                 * i - 1 converts the 1-based DP item index into
+                 * the 0-based Java array index.
                  */
                 int v = val[i - 1];
 
@@ -1013,10 +1013,11 @@ public class DP15 {
 
                 // Check whether the current item can fit in capacity j.
                 if (w <= j) {
-
-                    // Include the current item.
-                    // curr[j - w] is used instead of prev[j - w]
-                    // because the current item can be selected again.
+                    /*
+                     *  Include the current item.
+                     *  curr[j - w] is used instead of prev[j - w]
+                     *  because the current item can be selected again.
+                     */
                     int profit1 = v + curr[j - w];
 
                     // Exclude the current item.
