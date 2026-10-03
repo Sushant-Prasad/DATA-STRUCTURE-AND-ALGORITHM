@@ -1015,87 +1015,88 @@ SPECIAL NOTES
 
 public class DP14 {
 
-  /*
-   * Returns the maximum profit that can be obtained using
-   * Unbounded Knapsack with the given values, weights and capacity.
-   */
-  public static int unboundedKnapsackTab(int val[], int wt[], int W) {
+    /*
+     * Returns the maximum profit that can be obtained using
+     * Unbounded Knapsack with the given values, weights and capacity.
+     */
+    public static int unboundedKnapsackTab(int val[], int wt[], int W) {
 
-    // Number of available items.
-    int n = val.length;
+        // Number of available items.
+        int n = val.length;
+        /*
+         * // Create DP table.
+         * // Rows represent number of items considered.
+         * // Columns represent knapsack capacity.
+         */
+        int dp[][] = new int[n + 1][W + 1];
 
-    // Create DP table.
-    // Rows represent number of items considered.
-    // Columns represent knapsack capacity.
-    int dp[][] = new int[n + 1][W + 1];
-
-    // Initialize column 0.
-    // Capacity 0 always gives maximum profit 0.
-    for(int i = 0; i < dp.length; i++) {
-      dp[i][0] = 0;
-    }
-
-    // Initialize row 0.
-    // With zero items, maximum profit is 0 for every capacity.
-    for(int j = 0; j < dp[0].length; j++) {
-      dp[0][j] = 0;
-    }
-
-    // Process every item.
-    // i represents the number of items currently available.
-    for(int i = 1; i < n + 1; i++) {
-
-      // Process every capacity from 1 through W.
-      for(int j = 1; j < W + 1; j++) {
-
-        // Get the current item's value.
-        // i starts from 1, so i - 1 gives the Java array index.
-        int v = val[i - 1];
-
-        // Get the current item's weight.
-        // i - 1 converts the DP index into the Java array index.
-        int w = wt[i - 1];
-
-        // Check whether the current item can fit into capacity j.
-        if(w <= j) {
-
-          // Include the current item.
-          // dp[i][j - w] keeps the same row i because this is
-          // Unbounded Knapsack and the current item can be reused.
-          int profit1 = v + dp[i][j - w];
-
-          // Exclude the current item.
-          // Move to the previous row because the current item
-          // is not used at all.
-          int profit2 = dp[i - 1][j];
-
-          // Store the better result between include and exclude.
-          dp[i][j] = Math.max(profit1, profit2);
-
-        } else {
-
-          // Current item cannot fit, so exclude it automatically.
-          dp[i][j] = dp[i - 1][j];
+        // Initialize column 0.
+        // Capacity 0 always gives maximum profit 0.
+        for (int i = 0; i < dp.length; i++) {
+            dp[i][0] = 0;
         }
-      }
+
+        // Initialize row 0.
+        // With zero items, maximum profit is 0 for every capacity.
+        for (int j = 0; j < dp[0].length; j++) {
+            dp[0][j] = 0;
+        }
+
+        // Process every item.
+        // i represents the number of items currently available.
+        for (int i = 1; i < n + 1; i++) {
+
+            // Process every capacity from 1 through W.
+            for (int j = 1; j < W + 1; j++) {
+
+                // Get the current item's value.
+                // i starts from 1, so i - 1 gives the Java array index.
+                int v = val[i - 1];
+
+                // Get the current item's weight.
+                // i - 1 converts the DP index into the Java array index.
+                int w = wt[i - 1];
+
+                // Check whether the current item can fit into capacity j.
+                if (w <= j) {
+
+                    // Include the current item.
+                    // dp[i][j - w] keeps the same row i because this is
+                    // Unbounded Knapsack and the current item can be reused.
+                    int profit1 = v + dp[i][j - w];
+
+                    // Exclude the current item.
+                    // Move to the previous row because the current item
+                    // is not used at all.
+                    int profit2 = dp[i - 1][j];
+
+                    // Store the better result between include and exclude.
+                    dp[i][j] = Math.max(profit1, profit2);
+
+                } else {
+
+                    // Current item cannot fit, so exclude it automatically.
+                    dp[i][j] = dp[i - 1][j];
+                }
+            }
+        }
+
+        // Return the maximum profit using all items and capacity W.
+        return dp[n][W];
     }
 
-    // Return the maximum profit using all items and capacity W.
-    return dp[n][W];
-  }
+    public static void main(String[] args) {
 
-  public static void main(String[] args) {
+        // Values/profits of the five items.
+        int val[] = { 15, 14, 10, 45, 30 };
 
-    // Values/profits of the five items.
-    int val[] = {15, 14, 10, 45, 30};
+        // Weights of the five items.
+        int wt[] = { 2, 5, 1, 3, 4 };
 
-    // Weights of the five items.
-    int wt[] = {2, 5, 1, 3, 4};
+        // Maximum weight the knapsack can hold.
+        int W = 7;
 
-    // Maximum weight the knapsack can hold.
-    int W = 7;
-
-    // Calculate and print the maximum possible profit.
-    System.out.println("Maximum Profit = " + unboundedKnapsackTab(val, wt, W));
-  }
+        // Calculate and print the maximum possible profit.
+        System.out.println("Maximum Profit = " + unboundedKnapsackTab(val, wt, W));
+    }
 }
