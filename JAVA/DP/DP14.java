@@ -1059,10 +1059,11 @@ public class DP14 {
 
                 // Check whether the current item can fit into capacity j.
                 if (w <= j) {
-
-                    // Include the current item.
-                    // dp[i][j - w] keeps the same row i because this is
-                    // Unbounded Knapsack and the current item can be reused.
+                    /*
+                     * // Include the current item.
+                     * // dp[i][j - w] keeps the same row i because this is
+                     * // Unbounded Knapsack and the current item can be reused.
+                     */
                     int profit1 = v + dp[i][j - w];
 
                     // Exclude the current item.
