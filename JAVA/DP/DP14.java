@@ -1065,10 +1065,11 @@ public class DP14 {
                      * // Unbounded Knapsack and the current item can be reused.
                      */
                     int profit1 = v + dp[i][j - w];
-
-                    // Exclude the current item.
-                    // Move to the previous row because the current item
-                    // is not used at all.
+                    /*
+                     * // Exclude the current item.
+                     * // Move to the previous row because the current item
+                     * // is not used at all.
+                     */
                     int profit2 = dp[i - 1][j];
 
                     // Store the better result between include and exclude.
