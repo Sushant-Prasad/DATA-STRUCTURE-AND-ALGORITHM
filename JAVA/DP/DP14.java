@@ -1024,9 +1024,9 @@ public class DP14 {
         // Number of available items.
         int n = val.length;
         /*
-         * // Create DP table.
-         * // Rows represent number of items considered.
-         * // Columns represent knapsack capacity.
+         *  Create DP table.
+         *  Rows represent number of items considered.
+         *  Columns represent knapsack capacity.
          */
         int dp[][] = new int[n + 1][W + 1];
 
@@ -1060,15 +1060,15 @@ public class DP14 {
                 // Check whether the current item can fit into capacity j.
                 if (w <= j) {
                     /*
-                     * // Include the current item.
-                     * // dp[i][j - w] keeps the same row i because this is
-                     * // Unbounded Knapsack and the current item can be reused.
+                     *  Include the current item.
+                     *  dp[i][j - w] keeps the same row i because this is
+                     *  Unbounded Knapsack and the current item can be reused.
                      */
                     int profit1 = v + dp[i][j - w];
                     /*
-                     * // Exclude the current item.
-                     * // Move to the previous row because the current item
-                     * // is not used at all.
+                     *  Exclude the current item.
+                     *  Move to the previous row because the current item
+                     *  is not used at all.
                      */
                     int profit2 = dp[i - 1][j];
 
