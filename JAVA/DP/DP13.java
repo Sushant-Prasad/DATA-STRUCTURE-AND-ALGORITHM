@@ -799,68 +799,69 @@ import java.util.Arrays;
 
 public class DP13 {
 
-  public static boolean targetSumSubsetOpt(int arr[], int sum) {
+    public static boolean targetSumSubsetOpt(int arr[], int sum) {
 
-    // Number of elements in the array.
-    int n = arr.length;
+        // Number of elements in the array.
+        int n = arr.length;
 
-    // curr[] represents the current row of the original 2D DP table.
-    boolean curr[] = new boolean[sum + 1];
+        // curr[] represents the current row of the original 2D DP table.
+        boolean curr[] = new boolean[sum + 1];
 
-    // prev[] represents the previous row of the original 2D DP table.
-    boolean prev[] = new boolean[sum + 1];
+        // prev[] represents the previous row of the original 2D DP table.
+        boolean prev[] = new boolean[sum + 1];
 
-    // Sum 0 is always possible using an empty subset.
-    prev[0] = true;
+        // Sum 0 is always possible using an empty subset.
+        prev[0] = true;
+        /*
+         * // i represents the number of elements being considered.
+         * // i starts from 1 because row 0 is the base case.
+         * // i <= n is written as i < n + 1.
+         */
+        for (int i = 1; i < n + 1; i++) {
 
-    // i represents the number of elements being considered.
-    // i starts from 1 because row 0 is the base case.
-    // i <= n is written as i < n + 1.
-    for(int i = 1; i < n + 1; i++) {
+            // Reset curr[] because the same array is reused for every row.
+            Arrays.fill(curr, false);
 
-      // Reset curr[] because the same array is reused for every row.
-      Arrays.fill(curr, false);
+            // j represents the target sum currently being checked.
+            // j starts from 1 because sum 0 is already handled by prev[0].
+            for (int j = 1; j < sum + 1; j++) {
 
-      // j represents the target sum currently being checked.
-      // j starts from 1 because sum 0 is already handled by prev[0].
-      for(int j = 1; j < sum + 1; j++) {
+                // arr is 0-indexed, while i represents the 1-based DP row.
+                // Therefore, arr[i - 1] gives the current element.
+                int v = arr[i - 1];
 
-        // arr is 0-indexed, while i represents the 1-based DP row.
-        // Therefore, arr[i - 1] gives the current element.
-        int v = arr[i - 1];
+                // Include the current element if its value does not exceed j
+                // and the remaining sum j - v was possible in the previous row.
+                if (v <= j && prev[j - v]) {
+                    curr[j] = true;
+                }
 
-        // Include the current element if its value does not exceed j
-        // and the remaining sum j - v was possible in the previous row.
-        if(v <= j && prev[j - v]) {
-          curr[j] = true;
+                // Exclude the current element if j was already possible
+                // using the elements from the previous row.
+                if (prev[j]) {
+                    curr[j] = true;
+                }
+            }
+
+            // Move the current row into prev for the next element.
+            // clone() creates an independent copy of curr[].
+            prev = curr.clone();
         }
 
-        // Exclude the current element if j was already possible
-        // using the elements from the previous row.
-        if(prev[j]) {
-          curr[j] = true;
-        }
-      }
-
-      // Move the current row into prev for the next element.
-      // clone() creates an independent copy of curr[].
-      prev = curr.clone();
+        // After all elements are processed, prev represents the final row.
+        // prev[sum] tells whether the target sum can be formed.
+        return prev[sum];
     }
 
-    // After all elements are processed, prev represents the final row.
-    // prev[sum] tells whether the target sum can be formed.
-    return prev[sum];
-  }
+    public static void main(String[] args) {
 
-  public static void main(String[] args) {
+        // Array containing the available elements.
+        int arr[] = { 4, 2, 7, 1, 3 };
 
-    // Array containing the available elements.
-    int arr[] = {4, 2, 7, 1, 3};
+        // Target sum that we want to form.
+        int sum = 10;
 
-    // Target sum that we want to form.
-    int sum = 10;
-
-    // Calculate and print whether the target sum is possible.
-    System.out.println(targetSumSubsetOpt(arr, sum));
-  }
+        // Calculate and print whether the target sum is possible.
+        System.out.println(targetSumSubsetOpt(arr, sum));
+    }
 }
