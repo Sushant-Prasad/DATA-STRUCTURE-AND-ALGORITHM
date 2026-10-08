@@ -813,9 +813,9 @@ public class DP13 {
         // Sum 0 is always possible using an empty subset.
         prev[0] = true;
         /*
-         * // i represents the number of elements being considered.
-         * // i starts from 1 because row 0 is the base case.
-         * // i <= n is written as i < n + 1.
+         *  i represents the number of elements being considered.
+         *  i starts from 1 because row 0 is the base case.
+         *  i <= n is written as i < n + 1.
          */
         for (int i = 1; i < n + 1; i++) {
 
