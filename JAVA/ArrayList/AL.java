@@ -44,8 +44,8 @@ public class AL {
      *  PRINT 2D ARRAYLIST USING NESTED LOOPS
      * -----------------------------------------------------------
      *  We access:
-     *      - Each row → Mainlist.get(i)
-     *      - Each element of that row → CurrentList.get(j)
+     *    - Each row → Mainlist.get(i)
+     *    - Each element of that row → CurrentList.get(j)
      */
     for (int i = 0; i < Mainlist.size(); i++) {
       ArrayList<Integer> CurrentList = Mainlist.get(i);
