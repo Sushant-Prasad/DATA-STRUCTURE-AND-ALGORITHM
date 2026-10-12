@@ -61,7 +61,7 @@ public class AL {
      * -----------------------------------------------------------
      *  ALTERNATIVE: DIRECTLY PRINT THE WHOLE 2D LIST
      * -----------------------------------------------------------
-     *  Java's ArrayList toString() prints nested lists naturally:
+     *  Java's ArrayList toString() prints nested lists naturally :
      *      [[1, 2, 3, 4], [2, 4, 6, 8]]
      */
     System.out.println(Mainlist);
