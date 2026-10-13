@@ -90,10 +90,10 @@ public class AL2 {
      * =========================================================================
      *  KEY POINTS:
      *  ------------
-     *  ✔ Two-pointer approach ensures O(n) time  
-     *  ✔ Always move the pointer with the smaller height  
-     *  ✔ You never need to check combinations where width shrinks AND height does not increase  
-     *  ✔ This greedy approach is mathematically proven correct  
+     *   Two-pointer approach ensures O(n) time  
+     *   Always move the pointer with the smaller height  
+     *   You never need to check combinations where width shrinks AND height does not increase  
+     *   This greedy approach is mathematically proven correct  
      *
      * =========================================================================
      *  SPECIAL NOTES FOR LOGIC:
