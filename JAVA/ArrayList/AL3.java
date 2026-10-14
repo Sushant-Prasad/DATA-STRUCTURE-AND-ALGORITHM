@@ -9,8 +9,8 @@ import java.util.*;
  *
  *  PROBLEM STATEMENT:
  *  -------------------
- *  Given a **sorted ArrayList** and a target value,
- *  determine whether there exists **any pair** (i, j) such that:
+ *  Given a sorted ArrayList and a target value,
+ *  determine whether there exists any pair (i, j) such that:
  *
  *        list[i] + list[j] == target
  *
