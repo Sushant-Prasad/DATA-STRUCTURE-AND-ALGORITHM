@@ -27,9 +27,9 @@ import java.util.*;
  *      - One pointer starts from the right (large values)
  *
  *      Compare their sum with target:
- *          ✔ If sum == target → Pair found
- *          ✔ If sum < target → Move left pointer to increase sum
- *          ✔ If sum > target → Move right pointer to decrease sum
+ *           If sum == target → Pair found
+ *           If sum < target → Move left pointer to increase sum
+ *           If sum > target → Move right pointer to decrease sum
  *
  * ============================================================================
  *  BRUTE FORCE APPROACH:
