@@ -91,10 +91,10 @@ import java.util.ArrayList;
  * ============================================================================
  *  KEY POINTS:
  *  ------------
- *  ✔ Works in O(n)  
- *  ✔ Uses rotation properties to position pointers  
- *  ✔ Circular movement ensures proper traversal  
- *  ✔ Finds pair without sorting or modifying list  
+ *   Works in O(n)  
+ *   Uses rotation properties to position pointers  
+ *   Circular movement ensures proper traversal  
+ *   Finds pair without sorting or modifying list  
  *
  * ============================================================================
  *  TIME COMPLEXITY:
