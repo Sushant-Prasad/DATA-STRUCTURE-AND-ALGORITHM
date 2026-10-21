@@ -19,11 +19,11 @@ public class Array {
      * ============================================================================
      *  KEY POINTS ABOUT ARRAYS:
      *  ------------------------
-     *  ✔ Fixed size — cannot be changed after creation  
-     *  ✔ Index starts from 0  
-     *  ✔ Fast access → O(1) time using index  
-     *  ✔ Used when number of elements is known  
-     *  ✔ Stores homogeneous data (same type)
+     *   Fixed size — cannot be changed after creation  
+     *   Index starts from 0  
+     *   Fast access → O(1) time using index  
+     *   Used when number of elements is known  
+     *   Stores homogeneous data (same type)
      *
      * ============================================================================
      *  NOTES:
