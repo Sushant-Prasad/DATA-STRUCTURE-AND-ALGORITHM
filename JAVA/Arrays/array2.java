@@ -8,11 +8,11 @@ package Arrays;
 //  ------------
 //  In Java, EVERYTHING is passed by **value**, not by reference.
 //
-//  ✔ When you pass an array to a method:
+//   When you pass an array to a method:
 //        → the *reference value* (address) of the array is passed
 //        → so the method can MODIFY the original array
 //
-//  ✔ When you pass a primitive (int, float, etc):
+//   When you pass a primitive (int, float, etc):
 //        → only a COPY of the value is passed
 //        → so changes inside the function DO NOT affect the original variable
 //
