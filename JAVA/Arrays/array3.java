@@ -24,8 +24,8 @@ package Arrays;
 //  INTUITION:
 //  ----------
 //  Just check every element until you either:
-//      ✔ Find the element, or  
- //     ✔ Reach the end of the array.
+//       Find the element, or  
+ //      Reach the end of the array.
 //
 // ============================================================================
 //  APPROACH:
