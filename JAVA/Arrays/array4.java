@@ -7,8 +7,8 @@ package Arrays;
 //  PROBLEM STATEMENT:
 //  -------------------
 //  Given an integer array of size n, find:
-//      ✔ The largest (maximum) number
-//      ✔ The smallest (minimum) number
+//       The largest (maximum) number
+//       The smallest (minimum) number
 //
 // ============================================================================
 //  INTUITION:
@@ -67,10 +67,10 @@ package Arrays;
 // ============================================================================
 //  KEY POINTS:
 //  ------------
-//  ✔ Only 1 loop → O(n) time  
-//  ✔ No extra space → O(1) space  
-//  ✔ Works for both positive & negative numbers  
-//  ✔ Best method for max/min in arrays  
+//   Only 1 loop → O(n) time  
+//   No extra space → O(1) space  
+//   Works for both positive & negative numbers  
+//   Best method for max/min in arrays  
 //
 // ============================================================================
 //  TIME COMPLEXITY:   O(n)
