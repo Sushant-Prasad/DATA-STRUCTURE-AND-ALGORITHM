@@ -53,10 +53,10 @@ package Arrays;
 // ============================================================================
 //  KEY POINTS:
 //  ------------
-//  ✔ Works only when array is sorted  
-//  ✔ Much faster than linear search  
-//  ✔ Cuts search space in half each step  
-//  ✔ Avoid infinite loops by updating start/end correctly  
+//   Works only when array is sorted  
+//   Much faster than linear search  
+//   Cuts search space in half each step  
+//   Avoid infinite loops by updating start/end correctly  
 //
 // ============================================================================
 //  IMPORTANT NOTE:
