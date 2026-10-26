@@ -46,10 +46,10 @@ package Arrays;
 // ============================================================================
 //  KEY POINTS:
 //  ------------
-//  ✔ Array is reversed in-place
-//  ✔ No extra array is used
-//  ✔ Two-pointer technique is efficient
-//  ✔ Works for both even and odd sized arrays
+//   Array is reversed in-place
+//   No extra array is used
+//   Two-pointer technique is efficient
+//   Works for both even and odd sized arrays
 //
 // ============================================================================
 //  SPECIAL NOTES FOR LOGIC:
