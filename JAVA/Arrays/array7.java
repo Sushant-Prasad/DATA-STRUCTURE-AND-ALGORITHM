@@ -1,71 +1,71 @@
 package Arrays;
+/*
+ ============================================================================
+  TITLE:
+  Print All Possible Pairs in an Array
+ ============================================================================
 
-// ============================================================================
-//  TITLE:
-//  Print All Possible Pairs in an Array
-// ============================================================================
-//
-//  PROBLEM STATEMENT:
-//  ------------------
-//  Given an array of integers, print all possible unique pairs
-//  (a[i], a[j]) such that i < j.
-//
-// ============================================================================
-//  INTUITION:
-//  ----------
-//  To form pairs, each element should be paired with every element
-//  that comes after it in the array.
-//  This avoids duplicate pairs and self-pairing.
-//
-// ============================================================================
-//  APPROACH:
-//  ----------
-//  1. Use two nested loops.
-//  2. Outer loop selects the first element of the pair.
-//  3. Inner loop selects the second element starting from (i + 1).
-//  4. Print each pair in the form (a[i], a[j]).
-//
-// ============================================================================
-//  EXAMPLE:
-//  --------
-//      Input Array : [1, 2, 3]
-//      Output Pairs:
-//      (1,2)
-//      (1,3)
-//      (2,3)
-//
-// ============================================================================
-//  DRY RUN:
-//  --------
-//      a = [10, 20, 30], n = 3
-//
-//      i = 0 → j = 1 → (10,20)
-//             j = 2 → (10,30)
-//
-//      i = 1 → j = 2 → (20,30)
-//
-//      i = 2 → no valid j
-//
-// ============================================================================
-//  KEY POINTS:
-//  ------------
-//  ✔ Each pair is unique
-//  ✔ No duplicate or reverse pairs
-//  ✔ i < j ensures valid pairing
-//  ✔ Simple nested loop logic
-//
-// ============================================================================
-//  SPECIAL NOTES FOR LOGIC:
-//  ------------------------
-//  • Inner loop always starts from i + 1
-//  • Extra line after each outer iteration improves readability
-//  • Works for any array size >= 2
-//
-// ============================================================================
-//  TIME COMPLEXITY:  O(n²)
-//  SPACE COMPLEXITY: O(1)
-// ============================================================================
-//
+  PROBLEM STATEMENT:
+  ------------------
+  Given an array of integers, print all possible unique pairs
+  (a[i], a[j]) such that i < j.
+
+ ============================================================================
+  INTUITION:
+  ----------
+  To form pairs, each element should be paired with every element
+  that comes after it in the array.
+  This avoids duplicate pairs and self-pairing.
+
+ ============================================================================
+  APPROACH:
+  ----------
+  1. Use two nested loops.
+  2. Outer loop selects the first element of the pair.
+  3. Inner loop selects the second element starting from (i + 1).
+  4. Print each pair in the form (a[i], a[j]).
+
+ ============================================================================
+  EXAMPLE:
+  --------
+      Input Array : [1, 2, 3]
+      Output Pairs:
+      (1,2)
+      (1,3)
+      (2,3)
+
+ ============================================================================
+  DRY RUN:
+  --------
+      a = [10, 20, 30], n = 3
+
+      i = 0 → j = 1 → (10,20)
+             j = 2 → (10,30)
+
+      i = 1 → j = 2 → (20,30)
+
+      i = 2 → no valid j
+
+ ============================================================================
+  KEY POINTS:
+  ------------
+  ✔ Each pair is unique
+  ✔ No duplicate or reverse pairs
+  ✔ i < j ensures valid pairing
+  ✔ Simple nested loop logic
+
+ ============================================================================
+  SPECIAL NOTES FOR LOGIC:
+  ------------------------
+  • Inner loop always starts from i + 1
+  • Extra line after each outer iteration improves readability
+  • Works for any array size >= 2
+
+ ============================================================================
+  TIME COMPLEXITY:  O(n²)
+  SPACE COMPLEXITY: O(1)
+ ============================================================================
+ */
 
 import java.util.*;
 
