@@ -49,10 +49,10 @@ package Arrays;
  ============================================================================
   KEY POINTS:
   ------------
-  ✔ Each pair is unique
-  ✔ No duplicate or reverse pairs
-  ✔ i < j ensures valid pairing
-  ✔ Simple nested loop logic
+   Each pair is unique
+   No duplicate or reverse pairs
+   i < j ensures valid pairing
+   Simple nested loop logic
 
  ============================================================================
   SPECIAL NOTES FOR LOGIC:
