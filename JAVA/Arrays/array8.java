@@ -69,10 +69,10 @@ package Arrays;
 // ============================================================================
 //  KEY POINTS:
 //  ------------
-//  ✔ Subarrays are contiguous elements
-//  ✔ Order of elements is preserved
-//  ✔ Three nested loops are required for printing
-//  ✔ Blank lines improve output readability
+//   Subarrays are contiguous elements
+//   Order of elements is preserved
+//   Three nested loops are required for printing
+//   Blank lines improve output readability
 //
 // ============================================================================
 //  SPECIAL NOTES FOR LOGIC:
